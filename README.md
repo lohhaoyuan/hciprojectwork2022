@@ -1,2 +1,4 @@
 # Hwa Chong Project Work: OurCollab
-Hwa Chong project work Git Repo. 
+Hwa Chong Project Work Git Repository.
+
+
