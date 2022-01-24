@@ -7,6 +7,3 @@ Hwa Chong Project Work Git Repo.
 
 221558A@student.hci.edu.sg Zachary Chia Min 1i3
 
-Never gonna give you up
-Never gonna let you-
-I forgor 💀
