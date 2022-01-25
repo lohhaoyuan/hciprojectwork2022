@@ -2,7 +2,7 @@
 Hwa Chong Project Work Git Repo.
 
 ## ABOUT OURHCI
-[OurHci](ourhci-logo.png)
+![OurHci](ourhci-logo.png)
 
 ## DEVELOPERS
 221409l@student.hci.edu.sg Loh Hao Yuan 1i3
