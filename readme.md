@@ -1,8 +1,10 @@
-# Hwa Chong Project Work: OurOUR (2022 Infocomm)
+# Hwa Chong Project Work: OurHCI (2022 Infocomm)
 Hwa Chong Project Work Git Repo.
 
+## ABOUT OURHCI
 
-## CREATORS
+
+## DEVELOPERS
 221409l@student.hci.edu.sg Loh Hao Yuan 1i3
 
 221558a@student.hci.edu.sg Zachary Chia Min 1i3
@@ -13,5 +15,3 @@ Hwa Chong Project Work Git Repo.
 
 Logo by Louis Poh
 we are very good
-## SOME GUD MUSIK TO LISTEN TO
-https://m.youtube.com/watch?v=DvestPHTuWc
