@@ -1,4 +1,4 @@
-# Hwa Chong Project Work: OurCollab (2022 Infocomm)
+# Hwa Chong Project Work: OurOUR (2022 Infocomm)
 Hwa Chong Project Work Git Repo.
 
 
