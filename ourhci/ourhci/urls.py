@@ -15,8 +15,8 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from . import ourapp
+
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('/', ourapp.site.urls)
+    path('admin/', admin.site.urls)
 ]
+handler404 = "ourhci.views.page_not_found_view"
