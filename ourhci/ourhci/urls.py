@@ -19,4 +19,3 @@ from django.urls import path
 urlpatterns = [
     path('admin/', admin.site.urls)
 ]
-handler404 = "ourhci.views.page_not_found_view"
