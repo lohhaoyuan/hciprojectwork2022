@@ -4,7 +4,7 @@ Hwa Chong Project Work Git Repo.
 ## ABOUT OURHCI
 ![OurHci](ourhci-logo.png)
 
-_OurHCI_ is a social media platform for 
+**OurHCI** is a social media platform for 
 Hwa Chong students, similar in nature
 to Twitter and Instagram but with more swear
 word censorship.
