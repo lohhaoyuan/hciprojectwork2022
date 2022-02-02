@@ -7,8 +7,7 @@ Hwa Chong Project Work Git Repo.
 **OurHCI** is a social media platform for 
 Hwa Chong students, similar in nature
 to Twitter and Instagram but with more swear
-word censorship.
-
+word censorship. There is a report function to report people who have broken the rules.
  
 
 
@@ -22,3 +21,11 @@ word censorship.
 221326w@student.hci.edu.sg Kevin Tan Yong Zhi 1i3
 
 Logo idea by Louis Poh
+
+
+
+
+
+
+
+
