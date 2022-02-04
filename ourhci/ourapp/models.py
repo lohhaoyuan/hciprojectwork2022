@@ -4,4 +4,5 @@ from django.db import models
 
 class User(AbstractUser):
     hciclass = models.CharField(max_length=3, null=False, blank=False)
-
+    bio = models.CharField(max_length=500, null=True, blank=True)
+    
