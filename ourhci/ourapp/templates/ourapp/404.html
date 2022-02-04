@@ -1,0 +1,7 @@
+{%extends 'ourapp/layout.html' %}
+
+{% block body %}
+    <h1>Uh oh. We may have eaten this page...</h1>
+    <h3>Or, you may have followed a bad URL.</h3>
+    <a type="btn btn-primary btn-lg" href="{%url 'index' %}">Back to homepage.</a>
+{% endblock %}

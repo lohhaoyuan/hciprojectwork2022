@@ -9,6 +9,12 @@ from django import forms
 from django.forms import ModelForm
 
 # Create your views here.
+def error_404(request, exception):
+        data = {}
+        return render(request,'ourapp/404.html', data)
+
+
+
 def index(request):
     user = request.user
     developer = user.groups.filter(name='Developer').exists()

@@ -1,6 +1,6 @@
 body{
     font-family: 'Open Sans', sans-serif;
-
+    background-color: #EAECEF
 }
 
 #hachi {
@@ -11,7 +11,13 @@ body{
 .needspad {
     padding:30px;
 }
-#ourhcilogo{
-    max-width:50%;
+.logo{
+    max-width:10%;
     height:auto;
+}
+
+.footer{
+    text-align:center;
+
+    padding:-10px;
 }
