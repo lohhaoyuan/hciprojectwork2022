@@ -8,12 +8,12 @@
         <h1>
             {{data.username}} ({{data.hciclass}})
             {%for group in user.groups.all %}
-                {% if group.name == "Developer" %}
-                    <span class="badge badge-success">{{group}}</span>
+                {% if group.name == "Developer" or group.name == "" %}
+                    <span class="badge badge-pill badge-success">{{group}}</span>
                 {% elif group.name == "Moderator" %}
-                    <span class="badge badge-info">{{group}}</span>
+                    <span class="badge badge-pill badge-info">{{group}}</span>
                 {% else %}
-                    <span class="badge badge-secondary">{{group}}</span>
+                    <span class="badge badge-pill badge-secondary">{{group}}</span>
                 {% endif %}
             {% endfor %}
         </h1>

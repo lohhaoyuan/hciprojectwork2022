@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.urls import reverse
-from django.http import  HttpResponseRedirect
+from django.http import  HttpResponseRedirect, Http404
 from django.contrib.auth import authenticate, login, logout
 from django.db import IntegrityError
 from .models import User
@@ -82,6 +82,8 @@ def profile(request, username):
     if request.method == "POST":
         pass
     else:
+        if username == "ourhcitest+admin":
+            raise Http404
         user_data = User.objects.get(username=username)
         return render(request, "ourapp/profile.html",{
             "data":user_data
