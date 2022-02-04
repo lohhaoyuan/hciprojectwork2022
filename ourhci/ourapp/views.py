@@ -5,8 +5,11 @@ from django.contrib.auth import authenticate, login, logout
 from django.db import IntegrityError
 # Create your views here.
 def index(request):
-
-    return render(request, "ourapp/index.html")
+    user = request.user
+    developer = user.groups.filter(name='Developer').exists()
+    return render(request, "ourapp/index.html", {
+        "developer": developer
+    })
 
 
 def about(request):
