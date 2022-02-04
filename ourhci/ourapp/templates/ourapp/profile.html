@@ -1,0 +1,26 @@
+{% extends "ourapp/layout.html" %}
+
+{% block body %}
+
+
+
+    <div class="jumbotron">
+        <h1>
+            {{data.username}} ({{data.hciclass}})
+            {%for group in user.groups.all %}
+                {% if group.name == "Developer" %}
+                    <span class="badge badge-success">{{group}}</span>
+                {% elif group.name == "Moderator" %}
+                    <span class="badge badge-info">{{group}}</span>
+                {% else %}
+                    <span class="badge badge-secondary">{{group}}</span>
+                {% endif %}
+            {% endfor %}
+        </h1>
+    </div>
+   
+    
+
+
+
+{% endblock %}

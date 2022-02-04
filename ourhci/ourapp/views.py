@@ -45,11 +45,9 @@ def login_view(request):
     else:
         return render(request, "ourapp/login.html")
 
-
 def logout_view(request):
     logout(request)
     return HttpResponseRedirect(reverse("index"))
-
 
 def register(request):
     if request.method == "POST":
@@ -79,3 +77,12 @@ def register(request):
         return HttpResponseRedirect(reverse("index"))
     else:
         return render(request, "ourapp/register.html")
+
+def profile(request, username):
+    if request.method == "POST":
+        pass
+    else:
+        user_data = User.objects.get(username=username)
+        return render(request, "ourapp/profile.html",{
+            "data":user_data
+        })

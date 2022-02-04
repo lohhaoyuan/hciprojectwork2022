@@ -1,7 +1,11 @@
 {%extends 'ourapp/layout.html' %}
 
 {% block body %}
-    <h1>Uh oh. We may have eaten this page...</h1>
-    <h3>Or, you may have followed a bad URL.</h3>
-    <a type="btn btn-primary btn-lg" href="{%url 'index' %}">Back to homepage.</a>
+    <div class="jumbotron">
+        <h3>We found a lot of bubble tea, but we couldn't find this page.</h3>
+        <img class="imgsmaller" style="max-width:30%;height:auto;" alt="bubble tea" src="https://media.istockphoto.com/vectors/vector-illustration-sketch-hand-drawn-tapioca-pearl-milk-tea-vector-id1160179079?k=20&m=1160179079&s=612x612&w=0&h=vcXqicHHHvQdvcV3rLkDurzxrKtOANxq-wDltmZ6n94=">
+        <br>
+        <a class="btn btn-primary btn-lg" href="{%url 'index' %}">Back to homepage.</a>
+    </div>
+    
 {% endblock %}
