@@ -1,8 +1,14 @@
 body {
     font-family: 'Open Sans', sans-serif;
+    padding:70px;
 }
 
 #ourhcilogo{
     max-width:10%;
     height:auto;
 }
+
+img {
+    width: 10%;
+    height: auto;
+  }
