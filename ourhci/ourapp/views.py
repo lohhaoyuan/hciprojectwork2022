@@ -3,6 +3,11 @@ from django.urls import reverse
 from django.http import  HttpResponseRedirect
 from django.contrib.auth import authenticate, login, logout
 from django.db import IntegrityError
+from .models import User
+from django.conf import settings
+from django import forms
+from django.forms import ModelForm
+
 # Create your views here.
 def index(request):
     user = request.user
@@ -48,6 +53,7 @@ def register(request):
         # Ensure password matches confirmation
         password = request.POST["password"]
         confirmation = request.POST["confirmation"]
+        hciclass = request.POST['class']
         if password != confirmation:
             return render(request, "ourapp/register.html", {
                 "message": "Passwords must match."
@@ -56,10 +62,11 @@ def register(request):
         # Attempt to create new user
         try:
             user = User.objects.create_user(username, email, password)
+            user.hciclass = hciclass
             user.save()
         except IntegrityError:
             return render(request, "ourapp/register.html", {
-                "message": "Username already taken."
+                "message": "You have already registered! Please contact staff if this is a mistake."
             })
         
 
