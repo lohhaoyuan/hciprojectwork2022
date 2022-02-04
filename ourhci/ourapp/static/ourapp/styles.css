@@ -1,13 +1,17 @@
 body{
     font-family: 'Open Sans', sans-serif;
 
-
-
 }
+
+#hachi {
+    max-width:30%;
+    height:auto;
+}
+
 .needspad {
     padding:30px;
 }
 #ourhcilogo{
-    max-width:100%;
+    max-width:50%;
     height:auto;
 }
