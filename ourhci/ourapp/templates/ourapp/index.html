@@ -1,5 +1,31 @@
 {% extends "ourapp/layout.html" %}
 
 {% block body %}
-    <h4>Hello world!</h4>
+
+
+
+
+    <div class="jumbotron">
+        {% if user.is_authenticated%}
+        <h1 class="display-4">Hello, {{user}}!</h1>
+        <p class="lead">Welcome back to OurHCI.</p>
+        <hr class="my-4">
+        <p>We really appreciate your support! </p>
+        <p class="lead">
+        <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
+        </p>
+        {% else %}
+        <h1 class="display-4">Hello, world!</h1>
+        <p class="lead">Welcome to OurHCI.</p>
+        <hr class="my-4">
+        <p>Do register for a free account and support us!</p>
+        <p class="lead">
+        <a class="btn btn-primary btn-lg" href="#" role="button">Register</a>
+        </p>
+        {%endif%}
+    </div>
+
+
+
+
 {% endblock %}
