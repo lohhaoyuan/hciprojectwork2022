@@ -4,27 +4,29 @@
 
 
 
-
     <div class="jumbotron">
         {% if user.is_authenticated%}
-        <h1 class="display-4">Hello, <strong>{{user}}</strong>!</h1>
-        <p class="lead">Welcome back to OurHCI.</p>
-        <hr class="my-4">
-        <p>We really appreciate your support!</p>
-        <p class="lead">
-        <a class="btn btn-primary btn-lg" href="{%url 'about' %}" role="button">About our project</a>
-        </p>
+        <div class="p-5 mb-4 bg-light rounded-3">
+            <div class="container-fluid py-5">
+            <h1 class="display-5 fw-bold">Hello, <strong>{{user}}</strong>!</h1>
+            <h4 class="col-md-8 fs-4">Welcome back to OurHCI.</h4>
+            <p class="col-md-8 fs-4">Thank you so much for your support!</p>
+            <a class="btn btn-primary btn-lg" href="{%url 'about' %}" role="button">About our mission</a>
+            </div>
+        </div>
+
         {% else %}
-        <h1 class="display-4">Hello, world!</h1>
-        <p class="lead">Welcome to OurHCI.</p>
-        <hr class="my-4">
-        <p>Do register for a free account and support us!</p>
-        <p class="lead">
-        <a class="btn btn-primary btn-lg" href="#" role="button">Register</a>
-        </p>
+        <div class="p-5 mb-4 bg-light rounded-3">
+            <div class="container-fluid py-5">
+            <h1 class="display-5 fw-bold">Hello, world!</h1>
+            <h4 class="col-md-8 fs-4">Welcome to OurHCI.</h4>
+            <p class="col-md-8 fs-4">Connect with Hwa Chong for free by registering for an account.</p>
+            <a class="btn btn-primary btn-lg" href="{%url 'register' %}" role="button">Register</a>
+            </div>
+        </div>
         {%endif%}
     </div>
-    <h3>Recent Broadcasts <span class="badge badge-secondary">1</span>:</h3>
+   
     
 
 
