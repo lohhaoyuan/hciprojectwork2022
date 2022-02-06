@@ -1,12 +1,21 @@
 from django.shortcuts import render
 from django.urls import reverse
 from django.http import  HttpResponseRedirect, Http404
+from django.core.exceptions import PermissionDenied
 from django.contrib.auth import authenticate, login, logout
 from django.db import IntegrityError
 from .models import User
 from django.conf import settings
 from django import forms
-from django.forms import ModelForm
+from django.forms import ModelForm, formset_factory, modelformset_factory
+import pyperclip as copypaste
+
+# Forms
+class editprofileform(ModelForm):
+    class Meta:
+        model = User
+        fields = ["email", "bio"]
+
 
 # Create your views here.
 def error_404(request, exception):
@@ -112,4 +121,32 @@ def search(request):
         return HttpResponseRedirect(reverse("profile", kwargs={"username":searchq}))
     except:
         data = User.objects.all()
-        raise Http404
+        list = []
+        for user in data:
+            if searchq in user.username:
+                list.append(user)
+        return render(request, "ourapp/user_search_results.html", {
+            "data": list,
+            "searchq" : query
+        })
+
+def profile_edit(request, username):
+    if request.user.username != username:
+        raise PermissionDenied()
+    if request.method == "POST":
+        form = editprofileform(request.POST)
+        if form.is_valid():
+
+            new_email = form.cleaned_data["email"]
+            new_bio =  form.cleaned_data["bio"]
+            editor = User.objects.get(username=username)
+            editor.bio = new_bio
+            editor.email = new_email
+            editor.save()
+            return HttpResponseRedirect(reverse("profile", kwargs={"username":username}))
+    else:
+        userdata = User.objects.get(username=username)
+        return render(request, "ourapp/edit_profile.html", {
+            "user":userdata,
+            "form":editprofileform
+        })

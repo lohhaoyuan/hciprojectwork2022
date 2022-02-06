@@ -21,3 +21,11 @@ body{
 
     padding:-10px;
 }
+
+a {
+    color:black;
+}
+
+a:hover {
+    color:blue;
+}

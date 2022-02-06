@@ -9,7 +9,9 @@ urlpatterns = [
     path("login/", views.login_view, name="login"),
     path("register/", views.register, name="register"),
     path("logout/", views.logout_view, name="logout"),
-    path("user",views.user_search, name="users"),
-    path("user/<str:username>", views.profile, name="profile"),
+    path("@",views.user_search, name="users"),
+    path("@/<str:username>", views.profile, name="profile"),
+    path("@/<str:username>/edit", views.profile_edit, name="editprofile"),
     path("search",views.search, name="search")
+
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
