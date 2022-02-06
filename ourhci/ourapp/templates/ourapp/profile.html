@@ -19,6 +19,14 @@
 
         </h1>
         <h3>Email: <a href="mailto:{{data.email}}">{{data.email}}</a></h3>
+        <hr>
+        {% if data.bio is not None %}
+            <p>{{data.bio | safe}}</p>
+        {% elif user == data.username %}
+            <p>You don't seem to have a bio...</p>
+        {%else%}
+            <p>{{data.username}} does not seem to have a bio...</p>
+        {% endif %}
     </div>
    
     

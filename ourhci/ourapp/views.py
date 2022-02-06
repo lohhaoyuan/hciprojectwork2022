@@ -84,7 +84,32 @@ def profile(request, username):
     else:
         if username == "ourhcitest+admin":
             raise Http404
-        user_data = User.objects.get(username=username)
+        try:
+            user_data = User.objects.get(username=username)
+        except:
+            raise Http404
+
         return render(request, "ourapp/profile.html",{
             "data":user_data
         })
+
+def user_search(request):
+    if request.method == "POST":
+        pass
+    else:
+        return render(request, "ourapp/users.html")
+
+
+def search(request):
+    query = str(request.GET.get('q', 1))
+    searchq = query.upper()
+    searchq.strip()
+    searchq = searchq.replace(' ', '')
+
+    
+    try:
+        h = User.objects.get(username=searchq)
+        return HttpResponseRedirect(reverse("profile", kwargs={"username":searchq}))
+    except:
+        data = User.objects.all()
+        raise Http404
