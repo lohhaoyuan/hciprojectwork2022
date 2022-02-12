@@ -5,6 +5,7 @@ from django.db import models
 class User(AbstractUser):
 
     hciclass = models.CharField(max_length=3, null=False, blank=False)
+    consortium = models.CharField(max_length=8, null=True, blank=True)
     bio = models.TextField(max_length=500, null=True, blank=True)
     reputation = models.IntegerField(null=False, blank=False, default=100)
     email = models.EmailField(null=False, max_length=26, blank=False)

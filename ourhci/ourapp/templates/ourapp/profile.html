@@ -6,7 +6,14 @@
 
     <div class="jumbotron">
         <h1>
-            {{data.username}} ({{data.hciclass}})
+            {{data.username}}
+            {% if data.consortium == "Aphelion"%}
+                <img class="consort"style="    max-width:5%;
+                height:auto;" src="/static/ourapp/aphelion.png" alt="aphelion">
+            {% elif data.consortium == "iSpark" %}
+                <img class="consort" style="    max-width:5%;
+                height:auto;" src="/static/ourapp/ispark.png" alt="iSpark">
+            {% endif %}
             {%for group in user.groups.all %}
                 {% if group.name == "Developer" or group.name == "" %}
                     <span class="badge badge-pill badge-success">{{group}}</span>
@@ -22,9 +29,11 @@
               </svg></a>
             {% endif %}
         </h1>
+        <h4><b>{{data.hciclass}}</b></h4>
+        
         <h3>Email: <a href="mailto:{{data.email}}">{{data.email}}</a></h3>
         <hr>
-        {% if data.bio is not None %}
+        {% if data.bio != "" or data.bio is not None%}
             <p>{{data.bio | safe}}</p>
         {% elif user == data.username %}
             <p>You don't seem to have a bio...</p>

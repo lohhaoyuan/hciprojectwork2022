@@ -29,3 +29,8 @@ a {
 a:hover {
     color:blue;
 }
+
+consort{
+    max-width:5%;
+    height:auto;
+}

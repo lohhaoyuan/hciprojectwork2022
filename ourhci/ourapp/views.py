@@ -76,6 +76,16 @@ def register(request):
         try:
             user = User.objects.create_user(username, email, password)
             user.hciclass = hciclass
+            c_indic = hciclass[1].lower()
+            if c_indic == "i":
+                user.consortium = "iSpark"
+            elif c_indic == "a":
+                user.consortium = "Aphelion"
+            elif c_indic == "o":
+                user.consortium = "Ortus"
+            elif c_indic == "p":
+                user.consortium = "ProEd"
+                    
             user.save()
         except IntegrityError:
             return render(request, "ourapp/register.html", {
