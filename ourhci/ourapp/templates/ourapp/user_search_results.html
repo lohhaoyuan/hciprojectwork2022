@@ -11,5 +11,6 @@
     {% if not data %}
         <h4 class="needspad">No users matched "{{searchq}}"</h4>
     {%endif%}
+    
     <h1 class="needspad"><a class="btn btn-primary" href="{% url 'users'%}">Return to search.</a></h1>
 {% endblock %}

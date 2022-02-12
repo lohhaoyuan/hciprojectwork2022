@@ -14,7 +14,7 @@
                 <img class="consort" style="    max-width:5%;
                 height:auto;" src="/static/ourapp/ispark.png" alt="iSpark">
             {% endif %}
-            {%for group in user.groups.all %}
+            {%for group in data.groups.all %}
                 {% if group.name == "Developer" or group.name == "" %}
                     <span class="badge badge-pill badge-success">{{group}}</span>
                 {% elif group.name == "Moderator" %}
@@ -34,7 +34,7 @@
         <h3>Email: <a href="mailto:{{data.email}}">{{data.email}}</a></h3>
         <hr>
         {% if data.bio != "" or data.bio is not None%}
-            <p>{{data.bio | safe}}</p>
+            <p class="lead">{{data.bio | safe}}</p>
         {% elif user == data.username %}
             <p>You don't seem to have a bio...</p>
         {%else%}

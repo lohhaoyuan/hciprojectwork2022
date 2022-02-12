@@ -2,9 +2,10 @@
 
 {% block body %}
 
-
+    
 
     <div class="jumbotron">
+
         {% if user.is_authenticated%}
         <div class="p-5 mb-4 bg-light rounded-3">
             <div class="container-fluid py-5">
@@ -12,14 +13,12 @@
             <h4 class="col-md-8 fs-4">Welcome back to OurHCI.</h4>
             {% if developer == True %}
                 <p class="col-md-8 fs-4"> IMPROVE ME! ~thiswebsite</p>
-                <a class="btn btn-secondary btn-lg" href="admin" role="button">Admin Site</a>
-                <br>
-                <br>
+        
             {% else %}
                 <p class="col-md-8 fs-4">Thank you so much for your support!</p>
             {% endif %}
             <a class="btn btn-danger btn-lg" href="{%url 'profile' user %}" role="button">Your profile</a>
-            <a class="btn btn-primary btn-lg" href="{%url 'about' %}" role="button">About our mission</a>
+
 
             </div>
         </div>
