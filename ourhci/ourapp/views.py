@@ -4,7 +4,7 @@ from django.http import  HttpResponseRedirect, Http404
 from django.core.exceptions import PermissionDenied
 from django.contrib.auth import authenticate, login, logout
 from django.db import IntegrityError
-from .models import User
+from .models import User, Post
 from django.conf import settings
 from django import forms
 from django.forms import ModelForm, formset_factory, modelformset_factory
@@ -27,13 +27,15 @@ def error_404(request, exception):
 def index(request):
     user = request.user
     developer = user.groups.filter(name='Developer').exists()
+    feed = Post.objects.all()
+
     return render(request, "ourapp/index.html", {
-        "developer": developer
+        "developer": developer,
+        "feed":feed
     })
 
 
-def about(request):
-    return render(request, "ourapp/about.html")
+
 
 def login_view(request):
     if request.method == "POST":
