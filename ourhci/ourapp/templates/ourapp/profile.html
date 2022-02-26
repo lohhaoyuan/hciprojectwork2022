@@ -13,6 +13,9 @@
             {% elif data.consortium == "iSpark" %}
                 <img class="consort" style="    max-width:5%;
                 height:auto;" src="/static/ourapp/ispark.png" alt="iSpark">
+            {% elif data.consortium == "Ortus" %}
+                <img class="consort" style="    max-width:5%;
+                height:auto;" src="/static/ourapp/ortus.png" alt="Ortus">
             {% endif %}
             {%for group in data.groups.all %}
                 {% if group.name == "Developer" or group.name == "" %}
