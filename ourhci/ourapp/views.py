@@ -8,7 +8,7 @@ from .models import User, Post
 from django.conf import settings
 from django import forms
 from django.forms import ModelForm, formset_factory, modelformset_factory
-import pyperclip as copypaste
+import pyperclip
 
 # Forms
 class editprofileform(ModelForm):
