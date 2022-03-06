@@ -18,6 +18,14 @@
                 <p class="col-md-8 fs-4">Thank you so much for your support!</p>
             {% endif %}
             <!-- <a class="btn btn-danger btn-lg" href="{%url 'profile' user %}" role="button">Your profile</a> -->
+            <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#team" aria-expanded="false" aria-controls="team">
+                Announcement
+            </button>
+            <div class="collapse" id="team">
+                <div class="card card-body">
+                    Your Mom
+                </div>
+            </div>
             </div>
         </div>
 
@@ -30,8 +38,17 @@
             <a class="btn btn-danger btn-lg" href="{%url 'register' %}" role="button">Register</a>
             <a class="btn btn-primary btn-lg" href="{%url 'login' %}" role="button">Login</a>
             </div>
+            <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#team" aria-expanded="false" aria-controls="collapseExample">
+                About The Team
+            </button>
+            <div class="collapse" id="team">
+                <div class="card card-body">
+                  Some placeholder content for the collapse component. This panel is hidden by default but revealed when the user activates the relevant trigger.
+                </div>
+            </div>
         </div>
         {%endif%}
+        
         <h3>Your Feed:</h3>
         <hr>
         {%for post in feed%}
@@ -43,7 +60,11 @@
         {% endfor %}
     </div>
    
-    
+    <script>
+        $(document).ready(function(){
+          $('[data-toggle="tooltip"]').tooltip();
+        });
+    </script>
 
 
 
