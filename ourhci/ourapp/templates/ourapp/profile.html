@@ -52,12 +52,15 @@
         {% endif %}
 
     </div>
-   <script>
-       $(function () {
-        $('[data-toggle="tooltip"]').tooltip()
-        })
-   </script>
-    
+    <script type="text/javascript">
+        $(function () {
+            $("[rel='tooltip']").tooltip();
+        });
+        $(document).ready(function() {
+            $("body").tooltip({ selector: '[data-toggle=tooltip]' });
+        });
+    </script>
+    <script src="bootstrap/js/bootstrap-tooltip.js"></script>
 
 
 
