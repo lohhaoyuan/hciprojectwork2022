@@ -10,7 +10,8 @@ class User(AbstractUser):
     reputation = models.IntegerField(null=False, blank=False, default=100)
     email = models.EmailField(null=False, max_length=26, blank=False)
 
+        
 class Post(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     content = models.TextField(null=False)
-    image = models.ImageField(upload_to="uploads/images")
+    image = models.ImageField(upload_to="uploads/images", blank=True)
