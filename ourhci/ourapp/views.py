@@ -9,6 +9,7 @@ from django.conf import settings
 from django import forms
 from django.forms import ModelForm, formset_factory, modelformset_factory
 import pyperclip
+import datetime
 
 # Forms
 class editprofileform(ModelForm):
@@ -156,6 +157,8 @@ def profile_edit(request, username):
             editor.email = new_email
             editor.save()
             return HttpResponseRedirect(reverse("profile", kwargs={"username":username}))
+        else:
+            return HttpResponseRedirect(reverse("editprofile",  kwargs={"username":username}))    
     else:
         userdata = User.objects.get(username=username)
         return render(request, "ourapp/edit_profile.html", {
