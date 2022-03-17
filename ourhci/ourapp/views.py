@@ -10,7 +10,7 @@ from django import forms
 from django.forms import ModelForm, formset_factory, modelformset_factory
 import pyperclip
 import datetime
-
+import markdown2
 # Forms
 class editprofileform(ModelForm):
     class Meta:
@@ -120,7 +120,6 @@ def user_search(request):
         pass
     else:
         return render(request, "ourapp/users.html")
-
 
 def search(request):
     query = str(request.GET.get('q', 1))
