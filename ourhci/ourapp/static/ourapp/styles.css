@@ -2,7 +2,9 @@ body{
     font-family: 'Open Sans', sans-serif;
     background-color: #EAECEF
 }
-
+.userlink {
+    color:black;
+}
 #hachi {
     max-width:30%;
     height:auto;
