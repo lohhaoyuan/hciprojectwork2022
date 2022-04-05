@@ -28,7 +28,7 @@ def error_404(request, exception):
 def index(request):
     user = request.user
     developer = user.groups.filter(name='Developer').exists()
-    feed = Post.objects.all()
+    feed = Post.objects.all().order_by('-id')
 
     return render(request, "ourapp/index.html", {
         "developer": developer,
