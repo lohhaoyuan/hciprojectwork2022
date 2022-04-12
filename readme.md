@@ -1,4 +1,4 @@
-# Hwa Chong Project Work: OurHCI (2022 Infocomm)
+# Hwa Chong Project Work: OurHCI (2022 Project 9-05)
 Hwa Chong Project Work Git Repo.
 
 ## ABOUT OURHCI
