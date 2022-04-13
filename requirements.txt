@@ -1,1 +1,4 @@
 Django
+Pyperclip
+markdown2
+Pillow
