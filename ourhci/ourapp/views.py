@@ -24,19 +24,21 @@ def error_404(request, exception):
         return render(request,'ourapp/404.html', data)
 
 
-
+def rick(request):
+    return render(request, 'ourapp/rick.html')
+    
 def index(request):
     user = request.user
     developer = user.groups.filter(name='Developer').exists()
     feed = Post.objects.all().order_by('-id')
-
     return render(request, "ourapp/index.html", {
         "developer": developer,
         "feed":feed
     })
 
 
-
+def error418(request):
+    return render(request, 'ourapp/418.html')
 
 def login_view(request):
     if request.method == "POST":
@@ -55,9 +57,15 @@ def login_view(request):
                 "message": "Invalid username and/or password."
             })
     else:
+        if request.user.is_authenticated:
+            print("already logged in")
+            return HttpResponseRedirect(reverse("error418"))
         return render(request, "ourapp/login.html")
 
 def logout_view(request):
+    if not request.user.is_authenticated:
+            print("not logged in")
+            return HttpResponseRedirect(reverse("error418"))
     logout(request)
     return HttpResponseRedirect(reverse("index"))
 
@@ -88,7 +96,8 @@ def register(request):
                 user.consortium = "Ortus"
             elif c_indic == "p":
                 user.consortium = "ProEd"
-                    
+            elif c_indic == "L":
+                user.consortium = "Lbozo"          
             user.save()
         except IntegrityError:
             return render(request, "ourapp/register.html", {
@@ -98,6 +107,9 @@ def register(request):
 
         return HttpResponseRedirect(reverse("index"))
     else:
+        if request.user.is_authenticated:
+            print("already logged in")
+            return HttpResponseRedirect(reverse("error418"))
         return render(request, "ourapp/register.html")
 
 def profile(request, username):

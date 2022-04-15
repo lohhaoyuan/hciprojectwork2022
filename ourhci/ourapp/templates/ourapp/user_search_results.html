@@ -5,7 +5,9 @@
     <ul>
         
         {% for user in data%}
+            {% if user.username != 'ourhcitest+admin'%}
             <li><a href="{% url 'profile' user %}">{{user.username}}</a></li>
+            {%endif%}
         {% endfor %}
     </ul>
     {% if not data %}

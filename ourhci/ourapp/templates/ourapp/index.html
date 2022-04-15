@@ -7,26 +7,26 @@
     <div class="jumbotron">
 
         {% if user.is_authenticated%}
-        <div class="p-5 mb-4 bg-light rounded-3">
+        <div class="p-5 mb-4 rounded-3 bgneeded">
             <div class="container-fluid py-5">
             <h1 class="display-5 fw-bold">Hello, <strong>{{user}}</strong>!</h1>
             <h4 class="col-md-8 fs-4">Welcome back to OurHCI.</h4>
                 <p class="col-md-8 fs-4">
-                    "OurHCI puts the sock in Social Media!" -One of the insomniacs who made this website
-                     </p>
+                    Made on Earth by HwaChongians
+                </p>
         
 
             </div>
         </div>
 
         {% else %}
-        <div class="p-5 mb-4 bg-light rounded-3">
+        <div class="jumbotron bgneeded">
             <div class="container-fluid py-5">
-            <h1 class="display-5 fw-bold">Hello, world!</h1>
-            <h4 class="col-md-8 fs-4">Welcome to OurHCI.</h4>
-            <p class="col-md-8 fs-4">Connect with Hwa Chong today by signing up for free!</p>
+            <h1 class="display-4">Hello, world!</h1>
+            <h4 class="lead">Welcome to OurHCI.</h4>
+            <p class="lead">Made on Earth by HwaChongians.</p>
             <a class="btn btn-danger btn-lg" href="{%url 'register' %}" role="button">Register</a>
-            <a class="btn btn-primary btn-lg" href="{%url 'login' %}" role="button">Login</a>
+            <a class="btn btn-primary btn-ljg" href="{%url 'login' %}" role="button">Login</a>
             </div>
 
         </div>
@@ -35,14 +35,20 @@
         <h3>Espresso</h3>
         <hr>
         {%for post in feed%}
-            <a class="userlink" href="{% url 'profile' post.user %}"><h4>{{post.user}}</h4></a>
-            <p>{{post.content}}</p>
-            {% if post.image %}
-                <img src="/ourapp/{{post.image}}" alt="/ourapp/{{post.image}}">
-            {% endif %}
-            <hr>
+            <div class="card" style="width: 90%; height：auto; margin-bottom:2px;margin: 0 auto;float: none; margin-bottom: 10px;">
+                <div class="card-body">
+                <h5 class="card-title"><a class="userlink" href="{% url 'profile' post.user %}"><h4>{{post.user}}</h4></a></h5>
+                {% if post.image %}
+                    <h6 class="card-subtitle mb-2 text-muted"><img src="/ourapp/{{post.image}}" alt="/ourapp/{{post.image}}"></h6>
+                {% endif %}
+                <p class="card-text">{{post.content}}</p>
+                <!-- <a href="#" class="card-link">Card link</a>
+                <a href="#" class="card-link">Another link</a> -->
+                </div>
+            </div>
+            
         {% endfor %}
-    </div>
+    
    
     <script>
         $(document).ready(function(){
