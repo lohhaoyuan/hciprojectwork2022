@@ -7,7 +7,7 @@
     <div class="jumbotron">
 
         {% if user.is_authenticated%}
-        <div class="p-5 mb-4 rounded-3 bgneeded">
+        <div class="p-5 mb-4 rounded-3">
             <div class="container-fluid py-5">
             <h1 class="display-5 fw-bold">Hello, <strong>{{user}}</strong>!</h1>
             <h4 class="col-md-8 fs-4">Welcome back to OurHCI.</h4>
@@ -20,7 +20,7 @@
         </div>
 
         {% else %}
-        <div class="jumbotron bgneeded">
+        <div class="jumbotron">
             <div class="container-fluid py-5">
             <h1 class="display-4">Hello, world!</h1>
             <h4 class="lead">Welcome to OurHCI.</h4>
