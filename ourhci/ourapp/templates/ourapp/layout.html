@@ -112,21 +112,9 @@
         max-width:5%;
         height:auto;
       }
-      .bgneeded {
-        background-image: url(
-          https://i.imgur.com/elMLhWL.png          
-          );
-        color:white;
-        background-size: 50%;
-        background-repeat: no-repeat;
-        background-opacity:0.7;
-
-      }
       .mask1 {
-        -webkit-mask-image: url(          https://i.imgur.com/elMLhWL.png          
-.png);
-        mask-image: url(          https://i.imgur.com/elMLhWL.png          
-);
+        -webkit-mask-image: url(https://i.imgur.com/elMLhWL.png);
+        mask-image: url(https://i.imgur.com/elMLhWL.png);
         -webkit-mask-repeat: no-repeat;
         mask-repeat: no-repeat; 
       }
@@ -349,24 +337,24 @@
               Dashboard
             </span>
           </a>
-          <a href="/#" class="nav_link">
+          <a href="/" class="nav_link">
             <i class='bx bx-user nav_icon'></i>
             <span class="nav_name">New Post</span>
           </a>
-          <a href="/@#" class="nav_link">
+          <a href="/@" class="nav_link">
             <i class='bx bx-message-square-detail nav_icon'></i>
             <span class="nav_name">Users</span>
           {% if user.is_staff %}  
           </a> <a href="/admin" class="nav_link">
             <i class='bx bx-bookmark nav_icon'></i>
-            <span class="nav_name">Admin</span>
+            <span class="nav_name">Admin Site</span>
           </a>
           {% endif %}
-          <a href="#" class="nav_link">
+          <a href="/" class="nav_link">
             <i class='bx bx-folder nav_icon'></i>
             <span class="nav_name">foofoo</span>
           </a>
-          <a href="#" class="nav_link">
+          <a href="/" class="nav_link">
             <i class='bx bx-bar-chart-alt-2 nav_icon'></i>
             <span class="nav_name">barbar</span>
           </a>
