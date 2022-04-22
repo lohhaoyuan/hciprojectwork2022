@@ -35,7 +35,7 @@
         <h3>Espresso</h3>
         <hr>
         {%for post in feed%}
-            <div class="card" style="width: 90%; height：auto; margin-bottom:2px;margin: 0 auto;float: none; margin-bottom: 10px;">
+            <div class="card" style="width: 90%; height: auto; margin-bottom:2px;margin: 0 auto;float: none; margin-bottom: 10px;">
                 <div class="card-body">
                 <h5 class="card-title"><a class="userlink" href="{% url 'profile' post.user %}"><h4>{{post.user}}</h4></a></h5>
                 {% if post.image %}
