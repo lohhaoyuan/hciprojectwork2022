@@ -1,0 +1,17 @@
+{%extends 'ourapp/layout.html' %}
+
+{% block title %}
+    Create A New Post
+{% endblock %}
+
+{% block body %}
+    <form action="" method="post"  style="color: firebrick;" class="needspad">
+        {% csrf_token %}
+        <fieldset>
+        {% for element in form %}
+            <div style="text-transform:capitalize;">{{element.name}}:</div> {{element}}
+        {% endfor %}
+        <input type="image" src="https://prc.housing.ubc.ca/wp-content/uploads/2014/03/right-arrow.jpg" height="100" name="saveForm" class="btTxt submit" id="saveForm" />
+        </fieldset>
+    </form>
+{% endblock %}

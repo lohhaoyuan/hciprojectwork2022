@@ -20,13 +20,13 @@ class editprofileform(ModelForm):
 
 # Create your views here.
 def error_404(request, exception):
-        data = {}
-        return render(request,'ourapp/404.html', data)
+    data = {}
+    return render(request,'ourapp/404.html', data)
 
 
 def rick(request):
     return render(request, 'ourapp/rick.html')
-    
+
 def index(request):
     user = request.user
     developer = user.groups.filter(name='Developer').exists()
@@ -36,8 +36,26 @@ def index(request):
         "feed": feed,
     })
 
+class NewForm(forms.Form):
+    content = forms.CharField(widget=forms.Textarea)
+    #image = idk
+
 def make_post(request):
-    return HttpResponse("Page not created yet.")
+    if request.method == "POST":
+        user = request.user
+        content = request.POST['content']
+        #image = idk
+        creation = Post.objects.create(
+            user = user,
+            content = content,
+            #image = image,
+        )
+        creation.save()
+        return HttpResponseRedirect(reverse("index"))
+    else:
+        return render(request, "ourapp/new.html", {
+            'form' : NewForm,
+        })
 
 def error418(request):
     return render(request, 'ourapp/418.html')
