@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.urls import reverse
-from django.http import  HttpResponseRedirect, Http404
+from django.http import  HttpResponseRedirect, Http404, HttpResponse
 from django.core.exceptions import PermissionDenied
 from django.contrib.auth import authenticate, login, logout
 from django.db import IntegrityError
@@ -33,9 +33,11 @@ def index(request):
     feed = Post.objects.all().order_by('-id')
     return render(request, "ourapp/index.html", {
         "developer": developer,
-        "feed":feed
+        "feed": feed,
     })
 
+def make_post(request):
+    return HttpResponse("Page not created yet.")
 
 def error418(request):
     return render(request, 'ourapp/418.html')
