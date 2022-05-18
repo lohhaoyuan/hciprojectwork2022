@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.urls import reverse
-from django.http import  HttpResponseRedirect, Http404
+from django.http import  HttpResponseRedirect, Http404, HttpResponse
 from django.core.exceptions import PermissionDenied
 from django.contrib.auth import authenticate, login, logout
 from django.db import IntegrityError
@@ -20,22 +20,42 @@ class editprofileform(ModelForm):
 
 # Create your views here.
 def error_404(request, exception):
-        data = {}
-        return render(request,'ourapp/404.html', data)
+    data = {}
+    return render(request,'ourapp/404.html', data)
 
 
 def rick(request):
     return render(request, 'ourapp/rick.html')
-    
+
 def index(request):
     user = request.user
     developer = user.groups.filter(name='Developer').exists()
     feed = Post.objects.all().order_by('-id')
     return render(request, "ourapp/index.html", {
         "developer": developer,
-        "feed":feed
+        "feed": feed,
     })
 
+class NewForm(forms.Form):
+    content = forms.CharField(widget=forms.Textarea)
+    #image = idk
+
+def make_post(request):
+    if request.method == "POST":
+        user = request.user
+        content = request.POST['content']
+        #image = idk
+        creation = Post.objects.create(
+            user = user,
+            content = content,
+            #image = image,
+        )
+        creation.save()
+        return HttpResponseRedirect(reverse("index"))
+    else:
+        return render(request, "ourapp/new.html", {
+            'form' : NewForm,
+        })
 
 def error418(request):
     return render(request, 'ourapp/418.html')
