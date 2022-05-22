@@ -7,22 +7,22 @@
         <h1>Editing {{user.username}}</h1>
         <form method="post" action="{% url 'editprofile' user%}">
             {% csrf_token %}
+
             <h5>To change your name, please contact an admin or email <a href="mailto:ourhciemails@gmail.com">ourhciemails@gmail.com</a>.</h5>
             <div class="input-group mb-3">
                 <div class="input-group-prepend">
                   <span class="input-group-text" id="basic-addon1">Email</span>
                 </div>
+
                 <input name="email" value="{{user.email}}" type="email" required>
-                
             </div>
-            
             
             <div class="input-group mb-3">
                 <div class="input-group-prepend">
                   <span class="input-group-text" id="basic-addon1">Bio</span>
                 </div>
+
                 <textarea name="bio" rows="4" cols="50">{{user.bio}}</textarea>
-                
             </div>
             
             <button type="submit" class="btn btn-primary">Update profile</button>
