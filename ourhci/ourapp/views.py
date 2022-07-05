@@ -11,6 +11,7 @@ from django.forms import ModelForm, formset_factory, modelformset_factory
 import pyperclip
 import datetime
 import markdown2
+from django.contrib.auth.decorators import login_required
 # Forms
 class editprofileform(ModelForm):
     class Meta:
@@ -152,12 +153,15 @@ def profile(request, username):
         except:
             raise Http404
 
-    if len(UserFollow.objects.all().filter(follower = request.user, following = User.objects.all().get(username=username))) == 0:
-        following = None
-    elif request.user.username == username:
-        following = None
+    if request.user.is_authenticated == True:
+        if len(UserFollow.objects.all().filter(follower = request.user, following = User.objects.all().get(username=username))) == 0:
+            following = None
+        elif request.user.username == username:
+            following = None
+        else:
+            following = True
     else:
-        following = True
+        following = None
 
     return render(request, "ourapp/profile.html",{
         "data": user_data,
@@ -214,6 +218,7 @@ def profile_edit(request, username):
             "form": editprofileform
         })
 
+@login_required
 def follow(request, username):
     if len(UserFollow.objects.all().filter(follower = request.user, following = User.objects.all().get(username=username))) == 0:
         UserFollow.objects.create(
@@ -224,6 +229,7 @@ def follow(request, username):
         pass
     return HttpResponseRedirect(reverse("profile",  kwargs={"username":username}))   
 
+@login_required
 def unfollow(request, username):
     follow_ties = UserFollow.objects.all().filter(follower = request.user, following = User.objects.all().get(username=username))
     if len(follow_ties) != 0:

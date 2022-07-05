@@ -43,10 +43,12 @@
         <h4>
             <b>{{data.hciclass}}</b>
             <span style="float: right;">
-                {% if not following %}
-                    <button onclick="location.href='/follow/{{data.username}}'" class="btn btn-outline-primary" id="follow">Follow</button>
-                {% else %}
-                    <button onclick="location.href='/unfollow/{{data.username}}'" class="btn btn-outline-primary" id="unfollow">Unfollow</button>
+                {% if user.is_authenticated %}
+                    {% if not following %}
+                        <button onclick="location.href='/follow/{{data.username}}'" class="btn btn-outline-primary" id="follow">Follow</button>
+                    {% else %}
+                        <button onclick="location.href='/unfollow/{{data.username}}'" class="btn btn-outline-primary" id="unfollow">Unfollow</button>
+                    {% endif %}
                 {% endif %}
             </span>
         </h4>
