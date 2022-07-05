@@ -4,7 +4,7 @@ from django.http import  HttpResponseRedirect, Http404, HttpResponse
 from django.core.exceptions import PermissionDenied
 from django.contrib.auth import authenticate, login, logout
 from django.db import IntegrityError
-from .models import User, Post
+from .models import User, Post, UserFollow
 from django.conf import settings
 from django import forms
 from django.forms import ModelForm, formset_factory, modelformset_factory
@@ -152,9 +152,17 @@ def profile(request, username):
         except:
             raise Http404
 
-        return render(request, "ourapp/profile.html",{
-            "data":user_data
-        })
+    if len(UserFollow.objects.all().filter(follower = request.user, following = User.objects.all().get(username=username))) == 0:
+        following = None
+    elif request.user.username == username:
+        following = None
+    else:
+        following = True
+
+    return render(request, "ourapp/profile.html",{
+        "data": user_data,
+        "following": following,
+    })
 
 def user_search(request):
     if request.method == "POST":
@@ -202,6 +210,16 @@ def profile_edit(request, username):
     else:
         userdata = User.objects.get(username=username)
         return render(request, "ourapp/edit_profile.html", {
-            "user":userdata,
-            "form":editprofileform
+            "user": userdata,
+            "form": editprofileform
         })
+
+def follow(request, username):
+    if len(UserFollow.objects.all().filter(follower = request.user, following = User.objects.all().get(username=username))) == 0:
+        UserFollow.objects.create(
+            follower = request.user,
+            following = User.objects.all().get(username=username)
+        )
+    else:
+        pass
+    return HttpResponseRedirect(reverse("profile",  kwargs={"username":username}))   
