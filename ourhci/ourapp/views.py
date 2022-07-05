@@ -42,6 +42,7 @@ class NewForm(forms.Form):
     # image = forms.FileField(required=False)
     #image = idk
 
+@login_required
 def make_post(request):
     if request.method == "POST":
         user = request.user
