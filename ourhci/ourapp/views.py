@@ -223,3 +223,12 @@ def follow(request, username):
     else:
         pass
     return HttpResponseRedirect(reverse("profile",  kwargs={"username":username}))   
+
+def unfollow(request, username):
+    follow_ties = UserFollow.objects.all().filter(follower = request.user, following = User.objects.all().get(username=username))
+    if len(follow_ties) != 0:
+        for follow in follow_ties:
+            follow.delete()
+    else:
+        pass
+    return HttpResponseRedirect(reverse("profile",  kwargs={"username":username})) 

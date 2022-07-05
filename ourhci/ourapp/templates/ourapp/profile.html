@@ -42,11 +42,13 @@
         </h1>
         <h4>
             <b>{{data.hciclass}}</b>
-            {% if user.username != data.username %}
-                <span style="float: right;">
+            <span style="float: right;">
+                {% if not following %}
                     <button onclick="location.href='/follow/{{data.username}}'" class="btn btn-outline-primary" id="follow">Follow</button>
-                </span>
-            {% endif %}
+                {% else %}
+                    <button onclick="location.href='/unfollow/{{data.username}}'" class="btn btn-outline-primary" id="unfollow">Unfollow</button>
+                {% endif %}
+            </span>
         </h4>
         
         <h3>Email: <a href="mailto:{{data.email}}">{{data.email}}</a></h3>
