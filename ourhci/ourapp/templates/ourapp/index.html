@@ -5,31 +5,28 @@
     
 
     <div>
-        {% if user.is_authenticated%}
-        <div class="p-5 mb-4 rounded-3">
-            <div class="container-fluid py-5">
-            <h1 class="display-5 fw-bold">Hello, <strong>{{user}}</strong>!</h1>
-            <h4 class="col-md-8 fs-4">Welcome back to OurHCI.</h4>
+        {% if user.is_authenticated %}
+            <div class="p-5 mb-4 rounded-3">
+                <div class="container-fluid py-5">
+                <h1 class="display-5 fw-bold">Hello, <strong>{{user}}</strong>!</h1>
+                <h4 class="col-md-8 fs-4">Welcome back to OurHCI.</h4>
                 <p class="col-md-8 fs-4">
                     Made on Earth by HwaChongians
                 </p>
-        
-
             </div>
         </div>
 
         {% else %}
-        <div class="jumbotron">
-            <div class="container-fluid py-5">
-            <h1 class="display-4">Hello, world!</h1>
-            <h4 class="lead">Welcome to OurHCI.</h4>
-            <p class="lead"> Made on Earth by HwaChongians.</p>
-            <a class="btn btn-danger btn-lg" href="{%url 'register' %}" role="button">Register</a>
-            <a class="btn btn-primary btn-lg" href="{%url 'login' %}" role="button">Login</a>
+            <div class="p-5 mb-4 rounded-3">
+                <div class="container-fluid py-5">
+                    <h1 class="display-4">Hello, world!</h1>
+                    <h4 class="lead">Welcome to OurHCI.</h4>
+                    <p class="lead"> Made on Earth by HwaChongians.</p>
+                    <a class="btn btn-danger btn-lg" href="{%url 'register' %}" role="button">Register</a>
+                    <a class="btn btn-primary btn-lg" href="{%url 'login' %}" role="button">Login</a>
+                </div>
             </div>
-
-        </div>
-        {%endif%}
+        {% endif %}
             
         <h3 class="centered">Espresso</h3>
         <hr>
