@@ -38,17 +38,18 @@ def index(request):
 
 class NewForm(forms.Form):
     content = forms.CharField(widget=forms.Textarea)
+    # image = forms.FileField(required=False)
     #image = idk
 
 def make_post(request):
     if request.method == "POST":
         user = request.user
         content = request.POST['content']
-        #image = idk
+        # image = request.POST["image"]
         creation = Post.objects.create(
             user = user,
             content = content,
-            #image = image,
+            # image = image,
         )
         creation.save()
         return HttpResponseRedirect(reverse("index"))
@@ -98,6 +99,12 @@ def register(request):
         password = request.POST["password"]
         confirmation = request.POST["confirmation"]
         hciclass = request.POST['class']
+        try:
+            c_indic = hciclass[1].lower()
+        except: 
+            return render(request, "ourapp/register.html", {
+                "message": "Please enter a valid HCI class!."
+            })        
         if password != confirmation:
             return render(request, "ourapp/register.html", {
                 "message": "Passwords must match."
@@ -108,6 +115,8 @@ def register(request):
             user = User.objects.create_user(username, email, password)
             user.hciclass = hciclass
             c_indic = hciclass[1].lower()
+
+
             if c_indic == "i":
                 user.consortium = "iSpark"
             elif c_indic == "a":
@@ -121,7 +130,7 @@ def register(request):
             user.save()
         except IntegrityError:
             return render(request, "ourapp/register.html", {
-                "message": "You have already registered! Please contact staff if this is a mistake."
+                "message": "An account has already been registered under this name. Please login"
             })
         
 

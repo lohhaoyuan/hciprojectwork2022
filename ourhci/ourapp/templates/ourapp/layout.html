@@ -6,6 +6,9 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link href="/static/ourapp/styles.css" rel="stylesheet">
+    <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">   
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
@@ -221,7 +224,9 @@
       .nav_link:hover {
         color: var(--white-color);
       }
-
+      .nav_name{
+        font-size: 10;
+      }
       .show {
         left: 0;
       }
@@ -306,26 +311,25 @@
   <div class="l-navbar" id="nav-bar">
     <nav class="nav">
       <div>
-        <i class='bx bx-layer nav_logo-icon'></i>
         <span class="nav_logo-name">
           <img width="45" height="45" style="margin-left: 30px; margin-right: 30px; margin-bottom: 30px;" class="d-inline-block align-top2" id="ourhcilogo" src="{% static 'ourapp/ourhci-logo-2.png' %}">
         </span>
         <div class="nav_list">
           <a href="/" class="nav_link" id="a" onclick="set_active('a')">
             <i class='bx bx-grid-alt nav_icon'></i>
-            <span class="nav_name">Dashboard</span>
+            <span class="nav_name">Home</span>
           </a>
+          {% if user.is_authenticated %}
           <a href="/new" class="nav_link" id="b" onclick="set_active('b')">
-            <i class='bx bx-user nav_icon'></i>
-            <span class="nav_name">New Post</span>
+            <i class='bx bxs-message-alt-add'></i>
+                        <span class="nav_name">New</span>
           </a>
+          {% endif %}
           <a href="/@" class="nav_link" id="c" onclick="set_active('c')">
-            <i class='bx bx-message-square-detail nav_icon'></i>
-            <span class="nav_name">Users</span>
+            <i class="bi bi-people-fill"></i>            <span class="nav_name">Users</span>
           {% if user.is_staff %}  
           </a> <a href="/admin" class="nav_link" id="d" onclick="set_active('d')">
-            <i class='bx bx-bookmark nav_icon'></i>
-            <span class="nav_name">Admin Site</span>
+            <i class='bx bxs-check-shield' ></i>            <span class="nav_name">Admin</span>
           </a>
           {% endif %}
           <a href="/" class="nav_link" id="e" onclick="set_active('e')">
@@ -339,6 +343,10 @@
         </div>
       </div>
       {% if user.is_authenticated%}
+      <a href="{% url 'profile' user%}" class="nav_link">
+        <i class='bx bx-user-circle'></i>
+        <span class="nav_name">Profile</span>
+      </a>
       <a href="{% url 'logout' %}" class="nav_link">
         <i class='bx bx-log-out nav_icon'></i>
         <span class="nav_name">Sign Out</span>

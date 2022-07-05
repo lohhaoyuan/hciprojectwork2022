@@ -23,7 +23,7 @@
             <div class="container-fluid py-5">
             <h1 class="display-4">Hello, world!</h1>
             <h4 class="lead">Welcome to OurHCI.</h4>
-            <p class="lead">Made on Earth by HwaChongians.</p>
+            <p class="lead"> Made on Earth by HwaChongians.</p>
             <a class="btn btn-danger btn-lg" href="{%url 'register' %}" role="button">Register</a>
             <a class="btn btn-primary btn-lg" href="{%url 'login' %}" role="button">Login</a>
             </div>
@@ -36,15 +36,15 @@
         {%for post in feed%}
             <div class="card" style="width: 90%; height: auto; margin-bottom:2px;margin: 0 auto;float: none; margin-bottom: 10px;">
                 <div class="card-body">
-                <h5 class="card-title"><a class="userlink" href="{% url 'profile' post.user %}"><h4>{{post.user}}</h4></a></h5>
+                <h5 class="card-title"><a class="userlink" href="{% url 'profile' post.user %}"><h4><b>{{post.user}}</b></h4></a></h5>
                 {% if post.image %}
-                    <h6 class="card-subtitle mb-2 text-muted"><img src="/ourapp/{{post.image}}" alt="/ourapp/{{post.image}}"></h6>
+                    <img src="/ourapp/{{post.image}}" alt="/ourapp/{{post.image}}">
                 {% endif %}
                 <p class="card-text">{{post.content}}</p>
                 <!-- <a href="#" class="card-link">Card link</a>
                 <a href="#" class="card-link">Another link</a> -->
                 </div>
-            </div>
+            </div> 
             
         {% endfor %}
         
