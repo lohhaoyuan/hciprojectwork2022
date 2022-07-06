@@ -11,6 +11,7 @@ from django.forms import ModelForm, formset_factory, modelformset_factory
 import pyperclip
 import datetime
 import markdown2
+import markdownify
 from django.contrib.auth.decorators import login_required
 # Forms
 class editprofileform(ModelForm):
@@ -46,11 +47,12 @@ class NewForm(forms.Form):
 def make_post(request):
     if request.method == "POST":
         user = request.user
-        content = request.POST['content']
+        content = markdown2.markdown(request.POST['content'])
         # image = request.POST["image"]
         creation = Post.objects.create(
             user = user,
             content = content,
+            rawcontent = rawcontent,
             # image = image,
         )
         creation.save()

@@ -19,9 +19,6 @@
             {% elif data.consortium == "ProEd" %}
                 <img data-toggle="tooltip" data-placement="top" title="ProEd" class="consort" style="    max-width:5%;
             height:auto;" src="https://admindev.hci.edu.sg/uploads/proed_d1d22c04fc.jpg" alt="ProEd">
-            {% elif data.consortium == "Lbozo" %}
-            <img data-toggle="tooltip" data-placement="top"  title="L Bozo" class="consort" style="    max-width:5%;
-        height:auto;" src="https://thumbor.forbes.com/thumbor/fit-in/900x510/https://www.forbes.com/advisor/wp-content/uploads/2021/04/dogecoin.jpeg.jpg" alt="ProEd"> 
             {% endif %}
             
             {%for group in data.groups.all %}
@@ -43,11 +40,11 @@
         <h4>
             <b>{{data.hciclass}}</b>
             <span style="float: right;">
-                {% if user.is_authenticated %}
+                {% if user.is_authenticated and user.username != data.username %}
                     {% if not following %}
-                        <button onclick="location.href='/follow/{{data.username}}'" class="btn btn-outline-primary" id="follow">Follow</button>
+                        <button onclick="location.href='/follow/{{data.username}}'" class="btn btn-outline-primary" id="follow"><i class="bi bi-person-plus-fill"></i> Follow</button>
                     {% else %}
-                        <button onclick="location.href='/unfollow/{{data.username}}'" class="btn btn-outline-primary" id="unfollow">Unfollow</button>
+                        <button onclick="location.href='/unfollow/{{data.username}}'" class="btn btn-outline-primary" id="unfollow"><i class='bi bi-person-dash-fill' ></i> Unfollow</button>
                     {% endif %}
                 {% endif %}
             </span>
