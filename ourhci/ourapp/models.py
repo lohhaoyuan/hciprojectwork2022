@@ -3,7 +3,6 @@ from django.db import models
 # Create your models here.
 
 class User(AbstractUser):
-
     hciclass = models.CharField(max_length=3, null=False, blank=False)
     consortium = models.CharField(max_length=8, null=True, blank=True)
     bio = models.TextField(max_length=500, null=True, blank=True)

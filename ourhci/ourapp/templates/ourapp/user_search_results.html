@@ -4,15 +4,15 @@
     <h1 class="needspad">Results for "{{searchq}}"</h1>
     <ul>
         
-        {% for user in data%}
-            {% if user.username != 'ourhcitest+admin'%}
+        {% for user in data %}
+            {% if user.username != 'ourhcitest+admin' %}
             <li><a href="{% url 'profile' user %}">{{user.username}}</a></li>
-            {%endif%}
+            {% endif %}
         {% endfor %}
     </ul>
     {% if not data %}
         <h4 class="needspad">No users matched "{{searchq}}"</h4>
-    {%endif%}
+    {% endif %}
     
-    <h1 class="needspad"><a class="btn btn-primary" href="{% url 'users'%}">Return to search.</a></h1>
+    <h1 class="needspad"><a class="btn btn-primary" href="{% url 'users'%}">Return to search</a></h1>
 {% endblock %}

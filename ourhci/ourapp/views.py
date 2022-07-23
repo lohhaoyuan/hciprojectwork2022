@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.urls import reverse
-from django.http import  HttpResponseRedirect, Http404, HttpResponse
+from django.http import  HttpResponseRedirect, Http404, HttpResponse, JsonResponse
 from django.core.exceptions import PermissionDenied
 from django.contrib.auth import authenticate, login, logout
 from django.db import IntegrityError
@@ -19,8 +19,13 @@ class editprofileform(ModelForm):
         model = User
         fields = ["email", "bio"]
 
+class NewForm(forms.Form):
+    content = forms.CharField(widget=forms.Textarea)
+    # image = forms.FileField(required=False)
+    #image = idk
 
-# Create your views here.
+
+# Views
 def error_404(request, exception):
     data = {}
     return render(request,'ourapp/404.html', data)
@@ -37,11 +42,6 @@ def index(request):
         "developer": developer,
         "feed": feed,
     })
-
-class NewForm(forms.Form):
-    content = forms.CharField(widget=forms.Textarea)
-    # image = forms.FileField(required=False)
-    #image = idk
 
 @login_required
 def make_post(request):
@@ -178,25 +178,36 @@ def user_search(request):
         return render(request, "ourapp/users.html")
 
 def search(request):
+    # make searchq equal query stripped and caps
     query = str(request.GET.get('q', 1))
-    searchq = query.upper()
-    searchq.strip()
-    searchq = searchq.replace(' ', '')
+    query.strip()
+    searchq = query.replace(' ', '')
 
-    
-    try:
-        h = User.objects.get(username=searchq)
-        return HttpResponseRedirect(reverse("profile", kwargs={"username":searchq}))
-    except:
-        data = User.objects.all()
-        list = []
-        for user in data:
-            if searchq in user.username:
-                list.append(user)
+    # get search filter
+    search_filter = str(request.GET.get('filter', 1))
+
+    if search_filter == "filter_username":
+        searchq = searchq.upper()
+        try:
+            h = User.objects.get(username=searchq)
+            return HttpResponseRedirect(reverse("profile", kwargs={"username":searchq}))
+        except:
+            data = User.objects.all()
+            user_list = []
+            for user in data:
+                if searchq in user.username:
+                    user_list.append(user)
+            return render(request, "ourapp/user_search_results.html", {
+                "data": user_list,
+                "searchq" : query
+            })
+    else:
+        data = User.objects.filter(hciclass__contains=searchq)
         return render(request, "ourapp/user_search_results.html", {
-            "data": list,
-            "searchq" : query
+            "data": data,
+            "searchq": query
         })
+        
 
 def profile_edit(request, username):
     if request.user.username != username:
