@@ -19,6 +19,7 @@ urlpatterns = [
     path("new/", views.make_post, name="make_post"),
     path("follow/<str:username>", views.follow, name="follow"),
     path("unfollow/<str:username>", views.unfollow, name="unfollow"),
+    path("youshallnotpass", views.youshallnotpass, name="youshallnotpass")
 
 
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

@@ -13,6 +13,8 @@ import datetime
 import markdown2
 import markdownify
 from django.contrib.auth.decorators import login_required
+
+swearwords = ["shit"]
 # Forms
 class editprofileform(ModelForm):
     class Meta:
@@ -48,11 +50,14 @@ def make_post(request):
     if request.method == "POST":
         user = request.user
         content = markdown2.markdown(request.POST['content'])
+        for swear in swearwords:
+            if swear in content:
+                return HttpResponseRedirect(reverse("youshallnotpass"))
         # image = request.POST["image"]
         creation = Post.objects.create(
             user = user,
             content = content,
-            rawcontent = rawcontent,
+
             # image = image,
         )
         creation.save()
@@ -61,7 +66,8 @@ def make_post(request):
         return render(request, "ourapp/new.html", {
             'form' : NewForm,
         })
-
+def youshallnotpass(request):
+    return render(request, 'ourapp/youshallnotpass.html')
 def error418(request):
     return render(request, 'ourapp/418.html')
 

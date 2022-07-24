@@ -1,0 +1,13 @@
+{% extends "ourapp/layout.html" %}
+{% block body %}
+    <div class="p-5 mb-4 rounded-3">
+        <h1>Error 406 - Not Acceptable</h1>
+        <h2> You Shall Not Pass</h2>
+        <p>The server refuses to allow you to pass, because your post contains a swear.<br> Your entire post has been deleted, please restart and reconsider
+            your life decisions.
+        </p>
+        <div class="tenor-gif-embed" data-postid="16729885" data-share-method="host" data-aspect-ratio="2.40601" data-width="50%"><a href="https://tenor.com/view/you-shall-not-pass-lotr-do-not-enter-not-allowed-scream-gif-16729885">You Shall Not Pass Lotr GIF</a>from <a href="https://tenor.com/search/you+shall+not+pass-gifs">You Shall Not Pass GIFs</a></div> <script type="text/javascript" async src="https://tenor.com/embed.js"></script>
+        <br>
+        <a href="{% url 'make_post'%}" class="btn btn-primary">Back to making good life decisions</a>
+    </div>
+{% endblock %}
