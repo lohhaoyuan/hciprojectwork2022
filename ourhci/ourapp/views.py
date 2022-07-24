@@ -276,3 +276,8 @@ def edit(request, post_id):
         post.save()
 
         return HttpResponseRedirect('/')
+
+def delete(request, post_id):
+    post = Post.objects.all().get(id=post_id)
+    post.delete()
+    return HttpResponseRedirect('/')

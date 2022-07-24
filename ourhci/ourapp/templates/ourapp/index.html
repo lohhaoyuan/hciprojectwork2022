@@ -37,12 +37,17 @@
                         <a class="userlink" href="{% url 'profile' post.user %}">
                             <b>{{post.user}}</b>
                         </a>
+                    <nobr>
+                        {% if post.user == user %}
+                            <span style="float: right;">
+                                <button class="btn btn-outline-primary" onclick="location.assign('/edit/{{post.id}}')">Edit</button>
+                                <button class="btn btn-outline-danger" onclick="remove(`{{post.id}}`)">
+                                    Delete
+                                </button>
+                            </span>
+                        {% endif %}
                     </h4>
-                    {% if post.user == user %}
-                        <span style="float: right;">
-                            <button class="btn btn-outline-primary" onclick="location.assign('/edit/{{post.id}}')">Edit</button>
-                        </span>
-                    {% endif %}
+                </nobr>
                     {% if post.image %}
                         <img src="/ourapp/{{post.image}}" alt="/ourapp/{{post.image}}">
                     {% endif %}
@@ -61,6 +66,15 @@
         $(document).ready(function(){
           $('[data-toggle="tooltip"]').tooltip();
         });
+
+        function remove(post_id) {
+            if (confirm('Are you sure you want to delete this post?') == true) {
+                location.assign('/delete/' + post_id);
+            }
+            else {
+                pass
+            }
+        }
     </script>
 
 
