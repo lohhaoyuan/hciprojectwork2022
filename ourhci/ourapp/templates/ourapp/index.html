@@ -19,24 +19,28 @@
         {% else %}
             <div class="p-5 mb-4 rounded-3">
                 <div class="container-fluid py-5">
-                    <h1 class="display-4">Hello, world!</h1>
-                    <h4 class="lead">Welcome to OurHCI.</h4>
-                    <p class="lead"> Made on Earth by HwaChongians.</p>
+                    <h1 class="display-5 fw-bold">Hello, world!</h1>
+                    <h4 class="col-md-8 fs-4">Welcome to OurHCI.</h4>
+                    <p class="col-md-8 fs-4"> Made on Earth by HwaChongians.</p>
                     <a class="btn btn-danger btn-lg" href="{% url 'register' %}" role="button">Register</a>
                     <a class="btn btn-primary btn-lg" href="{% url 'login' %}" role="button">Login</a>
                 </div>
             </div>
         {% endif %}
             
-        <h3 class="centered">Your Slake</h3>
-        <hr>
+        <div class="p-5 mb-4 rounded-3"><h2 class="centered">Posts</h3></div>
+        
         {% for post in feed %}
             <div class="card" style="width: 90%; height: auto; margin-bottom:2px;margin: 0 auto;float: none; margin-bottom: 10px;">
                 <div class="card-body">
-                    <h5 class="card-title"><a class="userlink" href="{% url 'profile' post.user %}"><h4><b>{{post.user}}</b></h4></a></h5>
+                    <h4 class="card-title">
+                        <a class="userlink" href="{% url 'profile' post.user %}">
+                            <b>{{post.user}}</b>
+                        </a>
+                    </h4>
                     {% if post.user == user %}
                         <span style="float: right;">
-                            <button class="btn btn-primary"></button>
+                            <button class="btn btn-outline-primary" onclick="location.assign('/edit/{{post.id}}')">Edit</button>
                         </span>
                     {% endif %}
                     {% if post.image %}

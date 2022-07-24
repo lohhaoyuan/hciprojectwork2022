@@ -11,10 +11,10 @@ from django.forms import ModelForm, formset_factory, modelformset_factory
 import pyperclip
 import datetime
 import markdown2
-import markdownify
+from markdownify import markdownify as md
 from django.contrib.auth.decorators import login_required
 
-swearwords = ["shit"]
+bannedwords = ["shit", "fuck", "dick", "nigger", "penis", "what happened at tiananmen square", "clumptyduff"]
 # Forms
 class editprofileform(ModelForm):
     class Meta:
@@ -50,8 +50,8 @@ def make_post(request):
     if request.method == "POST":
         user = request.user
         content = markdown2.markdown(request.POST['content'])
-        for swear in swearwords:
-            if swear in content:
+        for bannedword in bannedwords:
+            if bannedword.upper() in content.upper():
                 return HttpResponseRedirect(reverse("youshallnotpass"))
         # image = request.POST["image"]
         creation = Post.objects.create(
@@ -66,6 +66,8 @@ def make_post(request):
         return render(request, "ourapp/new.html", {
             'form' : NewForm,
         })
+
+@login_required
 def youshallnotpass(request):
     return render(request, 'ourapp/youshallnotpass.html')
 def error418(request):
@@ -95,8 +97,8 @@ def login_view(request):
 
 def logout_view(request):
     if not request.user.is_authenticated:
-            print("not logged in")
-            return HttpResponseRedirect(reverse("error418"))
+        print("not logged in")
+        return HttpResponseRedirect(reverse("error418"))
     logout(request)
     return HttpResponseRedirect(reverse("index"))
 
@@ -258,3 +260,19 @@ def unfollow(request, username):
     else:
         pass
     return HttpResponseRedirect(reverse("profile",  kwargs={"username":username})) 
+
+def edit(request, post_id):
+    if request.method == "GET":
+        post = Post.objects.all().get(id=post_id)
+        post_content = md(post.content,  heading_style="ATX")
+        return render(request, "ourapp/edit.html", {
+            'user': request.user,
+            'post': post,
+            'post_content': post_content
+        })
+    else:
+        post = Post.objects.all().get(id=post_id)
+        post.content = markdown2.markdown(request.POST['content'])
+        post.save()
+
+        return HttpResponseRedirect('/')
