@@ -40,9 +40,9 @@
                     <nobr>
                         {% if post.user == user %}
                             <span style="float: right;">
-                                <button class="btn btn-outline-primary" onclick="location.assign('/edit/{{post.id}}')">Edit</button>
+                                <button class="btn btn-outline-primary" onclick="location.assign('/edit/{{post.id}}')"><i class='bx bxs-edit-alt' ></i></button>
                                 <button class="btn btn-outline-danger" onclick="remove(`{{post.id}}`)">
-                                    Delete
+                                    <i class='bx bxs-trash'></i>
                                 </button>
                             </span>
                         {% endif %}

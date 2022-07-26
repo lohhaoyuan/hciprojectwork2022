@@ -65,7 +65,7 @@
             <p class="lead">{{data.bio | safe}}</p>
         {% elif user == data.username %}
             <p>You don't seem to have a bio...</p>
-        {%else%}
+        {% else %}
             <p>{{data.username}} does not seem to have a bio...</p>
         {% endif %}
 

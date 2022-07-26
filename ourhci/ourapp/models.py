@@ -13,7 +13,7 @@ class User(AbstractUser):
 class Post(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     content = models.TextField(null=False)
-    image = models.ImageField(upload_to="uploads/images", blank=True)
+    # image = models.ImageField(upload_to="uploads/images", blank=True)
 
 class UserFollow(models.Model):
     follower = models.ForeignKey(User, related_name = "follower", on_delete = models.CASCADE)

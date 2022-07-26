@@ -14,7 +14,7 @@
                   <span class="input-group-text" id="basic-addon1">Email</span>
                 </div>
 
-                <input name="email" value="{{user.email}}" type="email" required>
+                <input id="email_input" name="email" value="{{user.email}}" type="email" required>
             </div>
             
             <div class="input-group mb-3">
@@ -22,12 +22,21 @@
                   <span class="input-group-text" id="basic-addon1">Bio</span>
                 </div>
 
-                <textarea name="bio" rows="4" cols="50">{{user.bio}}</textarea>
+                <textarea name="bio" rows="4" cols="50" style="resize: none;">{{user.bio}}</textarea>
             </div>
             
             <button type="submit" class="btn btn-primary">Update profile</button>
         </form>
     </div>
     
+    <script>
+        var email_input = document.querySelector('#email_input');
+        email_input.addEventListener('input', resize);
+        resize.call(email_input);
+
+        function resize() {
+            this.style.width = this.value.length + "ch";
+        }
+    </script>
 
 {% endblock %}
