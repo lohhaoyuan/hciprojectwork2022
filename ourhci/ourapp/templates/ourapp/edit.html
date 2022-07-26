@@ -1,0 +1,41 @@
+{% extends "ourapp/layout.html" %}
+
+{% block body %}
+    <style>
+        .content_div {
+            width: 80vw;
+            border: solid lightgrey 1px;
+            border-radius: 5px;
+            padding: 20px;
+        }
+
+        #id_content {
+            width: 85%;
+            height: 100px;
+            resize: none;
+        }
+    </style>
+
+    <div style="margin-left: 40px;">
+        {% if post.user != user %}
+            <p style="color: red; font-weight: bold; font-size: 20px;">You cannot edit another user's post.</p>
+        {% else %}
+            <h2>Editing Post</h2>
+
+            <br>
+
+            <div class="content_div">
+                <a class="navbar-brand" href="/profile/{{user}}" style="font-size: 1.5em; font-weight: bold; color: black;">You</a>
+                <form id="edit-form" action="" method="post">
+                    <fieldset>
+                        {% csrf_token %}
+                        <div style="width: 90vw">
+                            <textarea name="content" id="id_content">{{post_content}}</textarea>
+                        </div>
+                        <input type="submit" value="Save" class="btn btn-primary" id="edit-submit">
+                    </fieldset>
+                </form>
+            </div>
+        {% endif %}
+    </div>
+{% endblock %}
