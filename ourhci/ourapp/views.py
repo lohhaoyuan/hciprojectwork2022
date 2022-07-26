@@ -52,12 +52,13 @@ def make_post(request):
         content = markdown2.markdown(request.POST['content'])
         for bannedword in bannedwords:
             if bannedword.upper() in content.upper():
-                return HttpResponseRedirect(reverse("youshallnotpass"))
+                return render(request, "ourapp/youshallnotpass.html", {
+                    "url": "new"
+                })
         # image = request.POST["image"]
         creation = Post.objects.create(
             user = user,
             content = content,
-
             # image = image,
         )
         creation.save()
@@ -67,9 +68,6 @@ def make_post(request):
             'form' : NewForm,
         })
 
-@login_required
-def youshallnotpass(request):
-    return render(request, 'ourapp/youshallnotpass.html')
 def error418(request):
     return render(request, 'ourapp/418.html')
 

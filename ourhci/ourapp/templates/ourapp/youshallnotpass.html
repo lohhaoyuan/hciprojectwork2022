@@ -1,7 +1,7 @@
 {% extends "ourapp/layout.html" %}
 {% block body %}
     <style>
-        .tenor-gif-embed {
+        #img {
             animation-name: grow;
             animation-duration: 4s;
             animation-iteration-count: infinite;
@@ -30,18 +30,8 @@
             <br>
             Your entire post has been deleted, please restart and reconsider your life decisions.
         </p>
-        <div class="tenor-gif-embed" data-postid="16729885" data-share-method="host" data-aspect-ratio="2.40601" data-width="50%">
-            <a href="https://tenor.com/view/you-shall-not-pass-lotr-do-not-enter-not-allowed-scream-gif-16729885">
-                You Shall Not Pass Lotr GIF
-            </a>
-            from
-            <a href="https://tenor.com/search/you+shall+not+pass-gifs">
-                You Shall Not Pass GIFs
-            </a>
-        </div>
+        <img id="img" src="https://c.tenor.com/Rv-IfOOXPSIAAAAM/you-shall-not-pass-lotr.gif">
         <br>
-        <a href="{% url 'make_post'%}" class="btn btn-primary">Back to making good life decisions</a>
+        <a href="/{{url}}" class="btn btn-primary">Back to making good life decisions</a>
     </div>
-
-    <script type="text/javascript" async src="https://tenor.com/embed.js"></script>
 {% endblock %}
