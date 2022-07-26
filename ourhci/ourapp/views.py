@@ -14,7 +14,7 @@ import markdown2
 from markdownify import markdownify as md
 from django.contrib.auth.decorators import login_required
 
-bannedwords = ["shit", "fuck", "dick", "nigger", "penis", "what happened at tiananmen square", "clumptyduff"]
+bannedwords = ["shit", "fuck", "dick", "nigger", "penis", "what happened at tiananmen square", "clumptyduff", "cunt"]
 # Forms
 class editprofileform(ModelForm):
     class Meta:
@@ -271,6 +271,11 @@ def edit(request, post_id):
     else:
         post = Post.objects.all().get(id=post_id)
         post.content = markdown2.markdown(request.POST['content'])
+        for bannedword in bannedwords:
+            if bannedword.upper() in post.content.upper():
+                return render(request, "ourapp/youshallnotpass.html", {
+                    "url": "edit/" + str(post_id)
+                })
         post.save()
 
         return HttpResponseRedirect('/')
