@@ -1,5 +1,5 @@
 # Hwa Chong Project Work: OurHCI (2022 Project 9-05)
-Hwa Chong Project Work Git Repo.
+Hwa Chong Project Work Git Repository
 
 ## ABOUT OURHCI
 ![availableonios](https://img.shields.io/badge/iOS-000000?style=for-the-badge&logo=ios&logoColor=white)
