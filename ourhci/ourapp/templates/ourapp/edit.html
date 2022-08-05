@@ -32,10 +32,28 @@
                         <div style="width: 90vw">
                             <textarea name="content" id="id_content">{{post_content}}</textarea>
                         </div>
-                        <input type="submit" value="Save" class="btn btn-primary" id="edit-submit">
+                        <input type="submit" value="Save" class="btn btn-primary" id="edit-submit" onclick="send_verification();">
                     </fieldset>
                 </form>
             </div>
         {% endif %}
     </div>
+
+    <script>
+        document.onkeydown = (event) => {
+            if (event.ctrlKey && event.key === 's') {
+                event.preventDefault();
+                send_verification();
+            }
+        }
+
+        function send_verification() {
+            if (confirm('Are you sure you want to send this post?') == true) {
+                document.querySelector("#newform").submit();
+            }
+            else {
+                pass
+            }
+        }
+    </script>
 {% endblock %}

@@ -1,0 +1,262 @@
+{% extends 'ourapp/layout.html' %}
+
+{% block title %}
+    Information
+{% endblock %}
+
+{% block body %}
+    <style>
+        .card {
+            width: 90%;
+            height: auto;
+            margin-bottom:2px;
+            margin: 0 auto;
+            float: none;
+            margin-bottom: 10px;
+        }
+    </style>
+    <div class="needspad">
+        <h2>Rationale</h2>
+        <div>
+            <!--insert rationale-->
+        </div>
+
+        <hr style="background-color: black; border: none; height: 5px;">
+
+        <h2>Documentation</h2>
+        <div>
+            <div class="card" style="width: 90%; height: auto; margin-bottom:2px;margin: 0 auto;float: none; margin-bottom: 10px;">
+                <div class="card-body">
+                    <h3>Links</h3>
+
+                    <ul>
+                        <h5>Users and Profiles:</h5>
+                        <li>
+                            <a href="#docs_register_profile">Register</a>
+                        </li>
+                        <li>
+                            <a href="#docs_user_search">User Search</a>
+                        </li>
+                        <li>
+                            <a href="#docs_view_profile">View Profiles</a>
+                        </li>
+                        <li>
+                            <a href="#docs_edit_profile">Edit Profile</a>
+                        </li>
+                        <li>
+                            <a href="#docs_follow_user">Following Users</a>
+                        </li>
+
+                        <br>
+
+                        <h5>Posts:</h5>
+                        <li>
+                            <a href="#docs_create_post">Creating Posts</a>
+                        </li>
+                        <li>
+                            <a href="#docs_edit_post">Editing Posts</a>
+                        </li>
+                        <li>
+                            <a href="#docs_delete_post">Deleting Posts</a>
+                        </li>
+                        <li>
+                            <a href="#docs_view_post">Viewing Posts</a>
+                        </li>
+
+                        <br>
+
+                        <h5>Miscellaneous:</h5>
+                        <li>
+                            <a href="#docs_markdown_docs">Markdown</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <br>
+
+            <div class="card">
+                <div class="card-body">
+                    <h3 id="docs_register_profile">Register</h3>
+
+                    <br>
+
+                    <p>
+                        Before you can start using OurHCI, you will need an account. You can register for an account using the red "Register" button at the homepage.
+                        <br>
+                        You will be redirected to a form, prompting you for your name, class, email address, and the password you intend to use.
+                        <br>
+                        After you enter these information and press "Submit", your account will be created.
+                    </p>
+                </div>
+            </div>
+
+            <br>
+
+            <div class="card">
+                <div class="card-body">
+                    <h3 id="docs_user_search">User Search</h3>
+
+                    <br>
+
+                    <p>
+                        You can search for users by clicking on the "<i class="bi bi-people-fill"></i> Users" tab on the navigation bar. This will redirect you to a search bar.
+                        <br>
+                        You can select to filter by name or by class with a dropdown, and enter your search query.
+                        <br>
+                        After pressing "Go", you will be directed to a user's page if there is a direct match, otherwise you will be directed to a list of users that match the query.
+                    </p>
+                </div>
+            </div>
+
+            <br>
+
+            <div class="card">
+                <div class="card-body">
+                    <h3 id="docs_view_profile">View Profiles</h3>
+
+                    <br>
+
+                    <p>
+                        To view your own profile, you can click on the "<i class='bx bx-user-circle'></i> Profile" button at the bottom of the navigation bar.
+                        <br>
+                        To view other users' profiles, you can search for them using the <a href="#docs_user_search">user search</a> function, then click on their name. This will redirect you to their profile page.
+                    </p>
+                </div>
+            </div>
+
+            <br>
+
+            <div class="card">
+                <div class="card-body">
+                    <h3 id="docs_edit_profile">Edit Profile</h3>
+
+                    <br>
+
+                    <p>
+                        You can edit your profile by pressing the "<i class='bi bi-pencil-fill'></i>" button on your profile. This will redirect you to a form.
+                        <br>
+                        This will enable you to edit your email address and biography (bio for short). To edit your username, you will need to contact an admin.
+                    </p>
+                </div>
+            </div>
+
+            <br>
+
+            <div class="card">
+                <div class="card-body">
+                    <h3 id="docs_follow_user">Following Users</h3>
+
+                    <br>
+
+                    <p>
+                        You can follow users (non-mutual relationship) in OurHCI. This will enable you to see their posts when you go to the "<i class="bi bi-person-heart"></i> Following" tab. 
+                    </p>
+                </div>
+            </div>
+
+            <br>
+
+            <div class="card">
+                <div class="card-body">
+                    <h3 id="docs_create_post">Creating Posts</h3>
+
+                    <br>
+
+                    <p>
+                        To create a post, you can click on the "<i class='bx bxs-message-alt-add'></i> New" button on the navigation bar to the left. You will be taken to a form to create your post.
+                        <br>
+                        You can type in normal text, HTML, or <a href="#docs_markdown_docs">Markdown</a>.
+                        <br>
+                        Once you have composed the post, press:
+                        <ol>
+                            <li>the button to send</li>
+                            <b>or</b>
+                            <li>Ctrl+S</li>
+                        </ol>
+                        to send the post.
+                        Please note that if your post contains swear words, it will not pass the check and your post will be deleted.
+                    </p>
+                </div>
+            </div>
+
+            <br>
+            
+            <div class="card">
+                <div class="card-body">
+                    <h3 id="docs_edit_post">Editing Posts</h3>
+
+                    <br>
+
+                    <p>
+                        To edit your post, press the "<i class='bx bxs-edit-alt'></i>" button visible on the post you wish to edit. You will be taken to a form to edit your post.
+                        <br>
+                        Similarly, you can type in normal text, HTML, or <a href="#docs_markdown_docs">Markdown</a>.
+                        <br>
+                        Once you have complete your edits, press
+                        <ol>
+                            <li>the button to send</li>
+                            <b>or</b>
+                            <li>Ctrl+S</li>
+                        </ol>
+                        to send the post.
+                        We would like to reiterate not to add any swear words to your posts during edits, as they will not pass the checks.
+                    </p>
+                </div>
+            </div>
+
+            <br>
+
+            <div class="card">
+                <div class="card-body">
+                    <h3 id="docs_delete_post">Deleting Posts</h3>
+
+                    <br>
+
+                    <p>
+                        To delete your post, press the "<i class='bx bxs-trash'></i>" button visible on the post you wish to delete. A confirmation will pop up to ensure that you do not delete a post by accident.
+                        <br>
+                        After you delete your post, you will be redirected to the homepage and your post will be gone.
+                    </p>
+                </div>
+            </div>
+
+            <br>
+
+            <div class="card">
+                <div class="card-body">
+                    <h3 id="docs_view_post">Viewing Posts</h3>
+
+                    <br>
+
+                    <p>
+                        Posts can be viewed in two places:
+                        <ol>
+                            <li>the "<i class='bx bx-grid-alt nav_icon'></i> Home" tab, under "Posts"</li>
+                            <b>and</b>
+                            <li>the <a href="#docs_follow_user">"<i class="bi bi-person-heart"></i> Following"</a> tab, which shows posts by only people you follow.</li>
+                        </ol>
+                    </p>
+                </div>
+            </div>
+
+            <br>
+
+            <div class="card">
+                <div class="card-body">
+                    <h3 id="docs_markdown_docs">Markdown</h3>
+
+                    <br>
+
+                    <p>
+                        Markdown is one of the ways you can stylise text in your posts, the other method being HTML.
+                        <br>
+                        Some basic ways to format your text are headings (#), italic/bold(*, **), and lists ("1. 2. 3.", "- - -").
+                        <br>
+                        If you wish to use Markdown in your posts, <a href="https://www.markdownguide.org/basic-syntax/">this</a> is a useful resource.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

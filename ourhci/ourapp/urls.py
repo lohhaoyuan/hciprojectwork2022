@@ -21,6 +21,8 @@ urlpatterns = [
     path("unfollow/<str:username>", views.unfollow, name="unfollow"),
     path("edit/<int:post_id>", views.edit, name="edit"),
     path("delete/<int:post_id>", views.delete, name="delete"),
+    path("documentation", views.documentation, name="documentation"),
+    path("following", views.following, name="following"),
 
 
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

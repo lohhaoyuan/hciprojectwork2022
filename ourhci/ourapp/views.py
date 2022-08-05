@@ -41,6 +41,7 @@ def index(request):
     developer = user.groups.filter(name='Developer').exists()
     feed = Post.objects.all().order_by('-id')
     return render(request, "ourapp/index.html", {
+        "subhead": "Posts",
         "developer": developer,
         "feed": feed,
     })
@@ -284,3 +285,25 @@ def delete(request, post_id):
     post = Post.objects.all().get(id=post_id)
     post.delete()
     return HttpResponseRedirect('/')
+
+def documentation(request):
+    return render(request, "ourapp/documentation.html", {
+        "user": request.user,
+    })
+
+def following(request):
+    user = request.user
+    developer = user.groups.filter(name='Developer').exists()
+
+    following = list(())
+    following_set = UserFollow.objects.all().filter(follower = request.user)
+    for follow in following_set:
+        following.append(follow.following)
+
+    feed = Post.objects.all().filter(user__in=following).order_by('-id')
+
+    return render(request, "ourapp/index.html", {
+        "subhead": "Posts (Following)",
+        "developer": developer,
+        "feed": feed,
+    })
