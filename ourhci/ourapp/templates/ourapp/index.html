@@ -31,13 +31,13 @@
         <div class="p-5 mb-4 rounded-3">
             <h3 class="centered">
                 Posts
-                <span style="float: right;">
+                <span style="float: right;" title="Filter: Posts by users you follow">
                     {% if unfiltered %}
                         <button type="button" style="height: 50px; width: auto; font-size: 24px;" class="btn btn-secondary" onclick="location.assign('/following')"><i class='bx bx-filter-alt'></i></button>
                     {% else %}
-                        <button type="button" style="height: 50px; width: auto; font-size: 16px;" class="btn btn-secondary" onclick="location.assign('/')"><i class='bx bxs-filter-alt'></i></button>
+                        <button type="button" style="height: 50px; width: auto; font-size: 24px;" class="btn btn-secondary" onclick="location.assign('/')"><i class='bx bxs-filter-alt'></i></button>
                     {% endif %}
-                    </span>
+                </span>
             </h3>
         </div>
         
