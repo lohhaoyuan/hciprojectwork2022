@@ -327,15 +327,10 @@
             </a>
           {% endif %}
           <a href="/documentation" class="nav_link" id="e">
-            <i class='bi bi-journal-text'></i>
-            <span class="nav_name">Info</span>
+            <i class="bi bi-question-circle"></i>
+            <span class="nav_name">Help</span>
           </a>
-          {% if user.is_authenticated %}
-          <a href="/following" class="nav_link" id="f">
-            <i class="bi bi-person-heart"></i>
-            <span class="nav_name">Following</span>
-          </a>
-          {% endif %}
+          
         </div>
       </div>
       {% if user.is_authenticated %}

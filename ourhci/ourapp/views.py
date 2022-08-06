@@ -24,7 +24,7 @@ class editprofileform(ModelForm):
 class NewForm(forms.Form):
     content = forms.CharField(widget=forms.Textarea)
     # image = forms.FileField(required=False)
-    #image = idk
+    # image = idk
 
 
 # Views
@@ -41,9 +41,9 @@ def index(request):
     developer = user.groups.filter(name='Developer').exists()
     feed = Post.objects.all().order_by('-id')
     return render(request, "ourapp/index.html", {
-        "subhead": "Posts",
         "developer": developer,
         "feed": feed,
+        "unfiltered": True,
     })
 
 @login_required
@@ -303,7 +303,6 @@ def following(request):
     feed = Post.objects.all().filter(user__in=following).order_by('-id')
 
     return render(request, "ourapp/index.html", {
-        "subhead": "Posts (Following)",
         "developer": developer,
         "feed": feed,
     })
