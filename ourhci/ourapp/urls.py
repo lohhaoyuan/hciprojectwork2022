@@ -23,6 +23,7 @@ urlpatterns = [
     path("delete/<int:post_id>", views.delete, name="delete"),
     path("documentation", views.documentation, name="documentation"),
     path("following", views.following, name="following"),
+    path('postsearch', views.post_search, name="post_search"),
 
 
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

@@ -306,3 +306,16 @@ def following(request):
         "developer": developer,
         "feed": feed,
     })
+
+def post_search(request):
+    query = str(request.GET.get('q', 1))
+
+    data = Post.objects.all()
+    post_list = []
+    for post in data:
+        if query in post.content:
+            post_list.append(post)
+    return render(request, "ourapp/post_search_results.html", {
+        "data": post_list,
+        "query" : query
+    })

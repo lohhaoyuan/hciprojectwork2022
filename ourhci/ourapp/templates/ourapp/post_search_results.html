@@ -1,0 +1,25 @@
+{% extends "ourapp/layout.html" %}
+
+{% block body %}
+    <h1 class="needspad">Posts that contain query "{{query}}"</h1>
+
+    {% for post in data %}
+        <div class="card" style="width: 90%; height: auto; margin-bottom:2px; margin: 0 auto; float: none; margin-bottom: 10px;">
+            <div class="card-body">
+                <h4 class="card-title">
+                    <a class="userlink" href="{% url 'profile' post.user %}">
+                        <b>{{post.user}}</b>
+                    </a>
+                </h4>
+
+                <p class="card-text">{{post.content | safe}}</p>
+            </div>
+        </div>
+    {% endfor %}
+
+    {% if not data %}
+        <h4 class="needspad">No posts contained query "{{query}}"</h4>
+    {% endif %}
+    
+    <h1 class="needspad"><a class="btn btn-primary" href="{% url 'index'%}">Return to homepage</a></h1>
+{% endblock %}
