@@ -10,7 +10,7 @@ OurHCI is a social media platform for Hwa Chong students made using Django meant
 
 Politically incorrect posts ~~must~~ will be tagged with "This post has controversial content" for example, and there will be student moderators who review posts flagged or reported by other students. Repeatedly posting sh\*t will result in a drop in "social credit", a reputation system which will inform users of how trustworthy a person's posts might be.
 
-A project work by [@LHY-42](https://github.com/LHY-42), [@RxDefine](https://github.com/RxDefine), [@GoldPebble](https://github.com/Goldpebble) and [@Solarstacks](https://github.com/solarstacks)
+A project work by [@LHY-42](https://github.com/LHY-42), [@RxDefine](https://github.com/RxDefine), [@Goldpebble](https://github.com/Goldpebble) and [@solarstacks](https://github.com/solarstacks)
 
 ## DEVELOPERS
 221409l@student.hci.edu.sg Loh Hao Yuan 1i3
@@ -19,7 +19,7 @@ A project work by [@LHY-42](https://github.com/LHY-42), [@RxDefine](https://gith
 
 221423j@student.hci.edu.sg Marcel Neo Han Sheng 1i3
 
-221326w@student.hci.edu.sg Kevin Tan Yong Zhi 1i3
+221326w@student.hci.edu.sg Kevin Tan Yong Zhi 1i4
 
 Logo idea by Louis Poh
 
