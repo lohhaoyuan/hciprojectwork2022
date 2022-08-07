@@ -13,8 +13,13 @@ class User(AbstractUser):
 class Post(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     content = models.TextField(null=False)
+    likes = models.IntegerField(default=0)
     # image = models.ImageField(upload_to="uploads/images", blank=True)
 
 class UserFollow(models.Model):
     follower = models.ForeignKey(User, related_name = "follower", on_delete = models.CASCADE)
     following = models.ForeignKey(User, related_name = "following", on_delete = models.CASCADE)
+
+class Like(models.Model):
+    liker = models.ForeignKey(User, on_delete=models.CASCADE)
+    liked_post = models.ForeignKey(Post, on_delete=models.CASCADE)

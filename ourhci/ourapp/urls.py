@@ -24,6 +24,7 @@ urlpatterns = [
     path("documentation", views.documentation, name="documentation"),
     path("following", views.following, name="following"),
     path('postsearch', views.post_search, name="post_search"),
+    path('like/<int:post_id>', views.like, name="like"),
 
 
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

@@ -4,7 +4,7 @@ from django.http import  HttpResponseRedirect, Http404, HttpResponse, JsonRespon
 from django.core.exceptions import PermissionDenied
 from django.contrib.auth import authenticate, login, logout
 from django.db import IntegrityError
-from .models import User, Post, UserFollow
+from .models import User, Post, UserFollow, Like
 from django.conf import settings
 from django import forms
 from django.forms import ModelForm, formset_factory, modelformset_factory
@@ -40,6 +40,8 @@ def index(request):
     user = request.user
     developer = user.groups.filter(name='Developer').exists()
     feed = Post.objects.all().order_by('-id')
+
+    
     return render(request, "ourapp/index.html", {
         "developer": developer,
         "feed": feed,
@@ -72,6 +74,26 @@ def make_post(request):
 def error418(request):
     return render(request, 'ourapp/418.html')
 
+
+def like(request, post_id):
+    try:
+        creation = Like.objects.get(liker=request.user, liked_post=Post.objects.get(id=post_id))
+        creation.delete()
+        post = Post.objects.get(id=post_id)
+        post.likes -= 1
+        post.save()
+    except:
+        creation = Like.objects.create(
+            liker = request.user,
+            liked_post = Post.objects.get(id=post_id)
+        )
+        print("liked post")
+        creation.save()
+        print(f"saved post with user {request.user} and post {Post.objects.get(id=post_id).content}")
+        post = Post.objects.get(id=post_id)
+        post.likes += 1
+        post.save()
+    return HttpResponseRedirect(reverse("index"))
 def login_view(request):
     if request.method == "POST":
 

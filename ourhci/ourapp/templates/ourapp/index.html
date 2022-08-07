@@ -28,14 +28,21 @@
             </div>
         {% endif %}
             
-        <div class="p-5 mb-4 rounded-3">
+        <div class="p-5 mb-4 rounded-3" style="width: 95%; height: auto; margin-bottom:2px; margin: 0 auto; float: none; margin-bottom: 10px;">
+            
             <span style="display: flex; justify-content: space-between;">
+                <span style="font-size: 25px; position: absolute; left: 50vw;">Posts</span>
+
                 <form action="/postsearch">
-                    <input placeholder="Search for posts..." name="q">
-                    <button class="btn btn-success" type="submit">Go</button>
+
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control" placeholder="Search for posts.." >
+                        <div class="input-group-append">
+                          <button class="btn btn-outline-secondary" type="submut" id="button-addon2"><i class='bx bx-search' ></i></button>
+                        </div>
+                      </div>
                 </form>
 
-                <span style="font-size: 25px; position: absolute; left: 50vw;">Posts</span>
 
                 {% if unfiltered %}
                     <button type="button" style="height: 50px; width: auto; font-size: 24px;" class="btn btn-secondary" onclick="location.assign('/following')"><i class='bx bx-filter-alt'></i></button>
@@ -70,11 +77,17 @@
                         <a href="#" class="card-link">Card link</a>
                         <a href="#" class="card-link">Another link</a>
                     -->
+                    <nobr>
+                    <a href="{% url 'like' post.id %}" class="btn btn-outline-success"><i class='bx bx-heart'></i> {{post.likes}}</a>
+
+                   
+                    
+                    </nobr>
                 </div>
             </div> 
             
         {% endfor %}
-        
+        <br>
             </div>
     <script>
         $(document).ready(function(){
