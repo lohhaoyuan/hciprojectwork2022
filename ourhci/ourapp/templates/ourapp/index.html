@@ -43,12 +43,13 @@
                       </div>
                 </form>
 
-
+            {% if user.is_authenticated %}
                 {% if unfiltered %}
                     <button type="button" style="height: 50px; width: auto; font-size: 24px;" class="btn btn-secondary" onclick="location.assign('/following')"><i class='bx bx-filter-alt'></i></button>
                 {% else %}
                     <button type="button" style="height: 50px; width: auto; font-size: 24px;" class="btn btn-secondary" onclick="location.assign('/')"><i class='bx bxs-filter-alt'></i></button>
                 {% endif %}
+            {%endif%}
             </span>
             
         </div>
