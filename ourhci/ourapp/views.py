@@ -4,7 +4,7 @@ from django.http import  HttpResponseRedirect, Http404, HttpResponse, JsonRespon
 from django.core.exceptions import PermissionDenied
 from django.contrib.auth import authenticate, login, logout
 from django.db import IntegrityError
-from .models import User, Post, UserFollow, Like
+from .models import User, Post, UserFollow, Like, Comment
 from django.conf import settings
 from django import forms
 from django.forms import ModelForm, formset_factory, modelformset_factory
@@ -21,8 +21,6 @@ class editprofileform(ModelForm):
 
 class NewForm(forms.Form):
     content = forms.CharField(widget=forms.Textarea)
-    # image = forms.FileField(required=False)
-    # image = idk
 
 
 # Views
@@ -342,4 +340,34 @@ def post_search(request):
     })
 
 def comment(request, post_id):
-    return HttpResponse(post_id)
+    post = Post.objects.all().get(id=post_id)
+    if request.method == "GET":
+        return render(request, "ourapp/new_comment.html", {
+            "form": NewForm,
+            "post": post,
+        })
+    else:
+        user = request.user
+        content = markdown2.markdown(request.POST['content'])
+        for bannedword in bannedwords:
+            if bannedword.upper() in content.upper():
+                return render(request, "ourapp/youshallnotpass.html", {
+                    "url": "comment/" + post_id
+                })
+
+        post.comments += 1
+        post.save()
+
+        creation = Comment.objects.create(
+            commenter = user,
+            comment_content = content,
+            commented_post = post
+        )
+        creation.save()
+        return HttpResponseRedirect(reverse("index"))
+
+def view_post(request, post_id):
+    return render(request, "ourapp/view_post.html", {
+        "post": Post.objects.all().get(id=post_id),
+        "comments": Comment.objects.all().filter(commented_post=Post.objects.all().get(id=post_id))
+    })

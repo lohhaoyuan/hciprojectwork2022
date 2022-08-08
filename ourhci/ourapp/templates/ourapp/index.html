@@ -55,7 +55,7 @@
         </div>
         
         {% for post in feed %}
-            <div class="card" style="width: 90%; height: auto; margin-bottom:2px; margin: 0 auto; float: none; margin-bottom: 10px;">
+            <div class="card" style="width: 90%; height: auto; margin-bottom:2px; margin: 0 auto; float: none; margin-bottom: 10px;" onclick="location.assign('/post/{{post.id}}')">
                 <div class="card-body">
                     <h4 class="card-title">
                         <a class="userlink" href="{% url 'profile' post.user %}">
@@ -99,6 +99,8 @@
                 pass
             }
         }
+
+        
     </script>
 
 
