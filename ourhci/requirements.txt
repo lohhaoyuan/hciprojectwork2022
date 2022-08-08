@@ -1,2 +1,4 @@
 Django==4.0.5
 markdown2
+Pillow
+markdownify

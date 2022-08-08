@@ -8,7 +8,7 @@ class User(AbstractUser):
     bio = models.TextField(max_length=500, null=True, blank=True)
     reputation = models.IntegerField(null=False, blank=False, default=100)
     email = models.EmailField(null=False, max_length=26, blank=False)
-
+    reputation_multiplier = models.IntegerField(default = 1)
         
 class Post(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -23,3 +23,8 @@ class UserFollow(models.Model):
 class Like(models.Model):
     liker = models.ForeignKey(User, on_delete=models.CASCADE)
     liked_post = models.ForeignKey(Post, on_delete=models.CASCADE)
+
+class Comment(models.Model):
+    commenter = models.ForeignKey(User, on_delete=models.CASCADE)
+    commented_post = models.ForeignKey(Post, on_delete=models.CASCADE)
+    comment_content = models.TextField(null=False)

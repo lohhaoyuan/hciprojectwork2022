@@ -31,6 +31,7 @@ ALLOWED_HOSTS = [
     'vercel.app'
 ]
 
+DATABASES = {}
 
 # Application definition
 

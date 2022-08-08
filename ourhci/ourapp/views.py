@@ -8,13 +8,11 @@ from .models import User, Post, UserFollow, Like
 from django.conf import settings
 from django import forms
 from django.forms import ModelForm, formset_factory, modelformset_factory
-import pyperclip
-import datetime
 import markdown2
 from markdownify import markdownify as md
 from django.contrib.auth.decorators import login_required
 
-bannedwords = ["shit", "fuck", "dick", "nigger", "penis", "what happened at tiananmen square", "clumptyduff", "cunt"]
+bannedwords = ["shit", "fuck", "dick", "nigger", "penis", "who", "what", "where", "when", "why", "how", "did i ask", "fck", "fk", "sht", "what happened at tiananmen square", "clumptyduff", "cunt"]
 # Forms
 class editprofileform(ModelForm):
     class Meta:
@@ -55,6 +53,7 @@ def make_post(request):
         content = markdown2.markdown(request.POST['content'])
         for bannedword in bannedwords:
             if bannedword.upper() in content.upper():
+                
                 return render(request, "ourapp/youshallnotpass.html", {
                     "url": "new"
                 })
