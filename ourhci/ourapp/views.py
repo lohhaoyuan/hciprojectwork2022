@@ -340,3 +340,6 @@ def post_search(request):
         "data": post_list,
         "query" : query
     })
+
+def comment(request, post_id):
+    return HttpResponse(post_id)

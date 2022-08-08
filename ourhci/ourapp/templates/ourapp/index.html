@@ -78,12 +78,8 @@
                         <a href="#" class="card-link">Card link</a>
                         <a href="#" class="card-link">Another link</a>
                     -->
-                    <nobr>
                     <a href="{% url 'like' post.id %}" class="btn btn-outline-success"><i class='bx bx-heart'></i> {{post.likes}}</a>
-
-                   
-                    
-                    </nobr>
+                    <a href="{% url 'comment' post.id %}" class="btn btn-outline-success"><i class='bi bi-chat-left-text'></i> {{post.comments}}</a>
                 </div>
             </div> 
             

@@ -14,6 +14,7 @@ class Post(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     content = models.TextField(null=False)
     likes = models.IntegerField(default=0)
+    comments = models.IntegerField(default=0)
     # image = models.ImageField(upload_to="uploads/images", blank=True)
 
 class UserFollow(models.Model):
