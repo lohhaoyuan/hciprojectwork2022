@@ -1,0 +1,42 @@
+{% extends 'ourapp/layout.html' %}
+
+{% block title %}
+    Create A New Post
+{% endblock %}
+
+{% block body %}
+    <style>
+        #id_content {
+            resize: none;
+        } 
+    </style>
+    <form action="" method="post"  style="color: black;" id="newform" class="needspad">
+        <h1>Comment</h1>
+
+        {% csrf_token %}
+        <fieldset>
+            {% for element in form %}
+                <div style="text-transform:capitalize;">{{element.name}}:</div> {{element}}
+            {% endfor %}
+            <input type="image" src="https://iconape.com/wp-content/files/xh/367685/svg/send-logo-icon-png-svg.png" height="100" onclick="send_verification();" />
+        </fieldset>
+    </form>
+
+    <script>
+        document.onkeydown = (event) => {
+            if (event.ctrlKey && event.key === 's') {
+                event.preventDefault();
+                send_verification();
+            }
+        }
+
+        function send_verification() {
+            if (confirm('Are you sure you want to send this post?') == true) {
+                document.querySelector("#newform").submit();
+            }
+            else {
+                pass
+            }
+        }
+    </script>
+{% endblock %}
