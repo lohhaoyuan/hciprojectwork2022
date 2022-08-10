@@ -14,7 +14,7 @@
     <div class="card" style="width: 90%; height: auto; margin-bottom:2px; margin: 0 auto; float: none; margin-bottom: 10px;">
         <div class="card-body">
             <h4 class="card-title">
-                <a class="userlink" href="/@/{{post.user}}">
+                <a id="{{post.user.name_colour}}" class="userlink" href="/@/{{post.user}}">
                     <b>{{post.user}}</b>
                 </a>
             </h4>
@@ -35,11 +35,34 @@
                     <a class="userlink" href="/@/{{post.user}}">
                         <b>{{comment.commenter}}</b>
                     </a>
+                    {% if comment.commenter == user %}
+                            <span style="float: right;">
+                                <!-- <a class="btn btn-outline-primary" href="/edit/{{comment.id}}">
+                                    <i class='bx bxs-edit-alt'></i> -->
+                                </a>
+                                <a class="btn btn-outline-danger" onclick="remove(`{{comment.id}}`)">
+                                    <i class='bx bxs-trash'></i>
+                                </a>
+                            </span>
+                        {% endif %}
                 </h4>
                 <p class="card-text">{{comment.comment_content | safe}}</p>
             </div>
         </div>
     {% endfor %}
 
-
+    <script>
+        function remove(post_id) {
+            if (confirm('Are you sure you want to delete this comment?') == true) {
+                location.assign('/delete_comment/' + post_id);
+            }
+            else {
+                pass
+            }
+        }
+        var bold = document.querySelectorAll("b");
+        for (var i = 0; i < bold.length; i++) {
+            bold[i].style.color = bold[i].parentElement.id;
+        }
+    </script>
 {% endblock %}

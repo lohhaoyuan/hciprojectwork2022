@@ -12,7 +12,7 @@ import markdown2
 from markdownify import markdownify as md
 from django.contrib.auth.decorators import login_required
 
-bannedwords = ["shit", "fuck", "dick", "nigger", "penis", "who", "what", "where", "when", "why", "how", "did i ask", "fck", "fk", "sht", "what happened at tiananmen square", "clumptyduff", "cunt"]
+bannedwords = ["shit", "fuck", "dick", "nigger", "penis", "did i ask", "fck", "fk", "sht", "what happened at tiananmen square", "clumptyduff", "cunt"]
 # Forms
 class editprofileform(ModelForm):
     class Meta:
@@ -31,6 +31,16 @@ def error_404(request, exception):
 
 def rick(request):
     return render(request, 'ourapp/rick.html')
+
+def colour_dark(request, namecolour, dark):
+    user = request.user
+    user.name_colour = "#" + namecolour
+    if dark == "true":
+        user.darkModeOn = True
+    else:
+        user.darkModeOn = False
+    user.save()
+    return HttpResponseRedirect(reverse(profile, kwargs={'username':request.user}))
 
 def index(request):
     user = request.user
@@ -303,6 +313,11 @@ def edit(request, post_id):
 def delete(request, post_id):
     post = Post.objects.all().get(id=post_id)
     post.delete()
+    return HttpResponseRedirect('/')
+
+def delete_comment(request,comment_id):
+    comment = Comment.objects.get(id=comment_id)
+    comment.delete()
     return HttpResponseRedirect('/')
 
 def documentation(request):

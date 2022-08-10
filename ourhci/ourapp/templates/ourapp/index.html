@@ -6,7 +6,7 @@
 
     <div>
         {% if user.is_authenticated %}
-            <div class="p-5 mb-4 rounded-3">
+            <div class="p-5 mb-4 rounded-3" id="{{user.name_colour}}">
                 <div class="container-fluid py-5">
                 <h1 class="display-5 fw-bold">Hello, <strong>{{user}}</strong>!</h1>
                 <h4 class="col-md-8 fs-4">Welcome back to OurHCI.</h4>
@@ -45,9 +45,9 @@
 
             {% if user.is_authenticated %}
                 {% if unfiltered %}
-                    <button type="button" style="height: 50px; width: auto; font-size: 24px;" class="btn btn-secondary" onclick="location.assign('/following')"><i class='bx bx-filter-alt'></i></button>
+                    <button type="button" style="height: 50px; width: auto; font-size: 24px;" class="btn btn-secondary" onclick="location.assign('/following')"><i class="bi bi-funnel"></i></button>
                 {% else %}
-                    <button type="button" style="height: 50px; width: auto; font-size: 24px;" class="btn btn-secondary" onclick="location.assign('/')"><i class='bx bxs-filter-alt'></i></button>
+                    <button type="button" style="height: 50px; width: auto; font-size: 24px;" class="btn btn-secondary" onclick="location.assign('/')"><i class="bi bi-funnel-fill"></i></button>
                 {% endif %}
             {%endif%}
             </span>
@@ -58,15 +58,17 @@
             <div class="card" style="width: 90%; height: auto; margin-bottom:2px; margin: 0 auto; float: none; margin-bottom: 10px;" onclick="location.assign('/post/{{post.id}}')">
                 <div class="card-body">
                     <h4 class="card-title">
-                        <a class="userlink" href="{% url 'profile' post.user %}">
+                        <a id="{{post.user.name_colour}}" class="userlink" href="{% url 'profile' post.user %}">
                             <b>{{post.user}}</b>
                         </a>
                         {% if post.user == user %}
                             <span style="float: right;">
-                                <button class="btn btn-outline-primary" onclick="location.assign('/edit/{{post.id}}')"><i class='bx bxs-edit-alt' ></i></button>
-                                <button class="btn btn-outline-danger" onclick="remove(`{{post.id}}`)">
+                                <a class="btn btn-outline-primary" href="/edit/{{post.id}}">
+                                    <i class='bx bxs-edit-alt'></i>
+                                </a>
+                                <a class="btn btn-outline-danger" onclick="remove(`{{post.id}}`)">
                                     <i class='bx bxs-trash'></i>
-                                </button>
+                                </a>
                             </span>
                         {% endif %}
                     </h4>
@@ -100,7 +102,12 @@
             }
         }
 
+        var bold = document.querySelectorAll("b");
+        for (var i = 0; i < bold.length; i++) {
+            bold[i].style.color = bold[i].parentElement.id;
+        }
         
+        document.querySelector("strong").style.color = document.querySelector("strong").parentElement.parentElement.parentElement.id;
     </script>
 
 

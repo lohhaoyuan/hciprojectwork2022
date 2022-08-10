@@ -9,7 +9,9 @@ class User(AbstractUser):
     reputation = models.IntegerField(null=False, blank=False, default=100)
     email = models.EmailField(null=False, max_length=26, blank=False)
     reputation_multiplier = models.IntegerField(default = 1)
-        
+    darkModeOn = models.BooleanField(default=True)
+    name_colour = models.CharField(max_length=7, default="#000000")
+
 class Post(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     content = models.TextField(null=False)

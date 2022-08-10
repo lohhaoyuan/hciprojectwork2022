@@ -27,6 +27,31 @@
             
             <button type="submit" class="btn btn-primary">Update profile</button>
         </form>
+
+        <hr>
+        
+        <h3>Settings</h3>
+        <form>
+            <span>
+                <p>Dark Mode</p>
+                {% if user.darkModeOn %}
+                    <input id="dark" type="checkbox" class="checkbox" checked>
+                {% else %}
+                    <input id="dark" type="checkbox" class="checkbox">
+                {% endif %}
+            </span>
+
+            <span>
+                <p>Name Colour (hex value)</p>
+                <input id="name_colour_input" class="" value="{{user.name_colour}}">
+                <i id="colour_preview" style="color: white;" class='bx bxs-square-rounded'></i>
+            </span>
+
+            <br>
+            <br>
+
+            <a id="colour_thing" class="btn btn-primary">Update profile</a>
+        </form>
     </div>
     
     <script>
@@ -37,6 +62,29 @@
         function resize() {
             this.style.width = this.value.length + "ch";
         }
+
+        var name_colour_input = document.querySelector("#name_colour_input");
+        var colour_preview = document.querySelector("#colour_preview");
+
+        document.querySelector("#colour_thing").addEventListener('click', () => {
+            redirect = name_colour_input.value.substring(1)
+            var dark_value = document.querySelector("#dark").checked;
+            if (redirect === "") {
+                location.assign("/colour/blank/dark/" + dark_value)
+            }
+            else {
+                location.assign("/colour/" + redirect + "/dark/" + dark_value)
+            }
+        })
+
+        name_colour_input.addEventListener('input', () => {
+            if (/^#[0-9A-F]{6}$/i.test(name_colour_input.value) == true) { /// breakdown: ^(match begin) #, [0-9A-F]{6} (ensure 0-9, A-F appear exactly 6 times), $ (match end), i (ignore case)
+                colour_preview.style.color = name_colour_input.value;
+            }
+            else {
+                colour_preview.style.color = "white";
+            }
+        })
     </script>
 
 {% endblock %}

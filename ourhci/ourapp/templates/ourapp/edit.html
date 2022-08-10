@@ -24,8 +24,8 @@
 
             <br>
 
-            <div class="content_div">
-                <a class="navbar-brand" href="/profile/{{user}}" style="font-size: 1.5em; font-weight: bold; color: black;">You</a>
+            <div class="content_div" id="{{user.name_colour}}">
+                <a class="navbar-brand" href="/profile/{{user}}" style="font-size: 1.5em; font-weight: bold;">You</a>
                 <form id="edit-form" action="" method="post">
                     <fieldset>
                         {% csrf_token %}
@@ -54,6 +54,11 @@
             else {
                 pass
             }
+        }
+
+        var anchor_list = document.querySelectorAll(".navbar-brand");
+        for (var i = 0; i < anchor_list.length; i++) {
+            anchor_list[i].style.color = anchor_list[i].parentElement.id;
         }
     </script>
 {% endblock %}

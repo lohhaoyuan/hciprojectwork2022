@@ -18,7 +18,7 @@
     <div class="card" style="width: 90%; height: auto; margin-bottom:2px; margin: 0 auto; float: none; margin-bottom: 10px;">
         <div class="card-body">
             <h4 class="card-title">
-                <a class="userlink" href="{% url 'profile' post.user %}">
+                <a id="{{post.user.name_colour}}" class="userlink" href="{% url 'profile' post.user %}">
                     <b>{{post.user}}</b>
                 </a>
             </h4>
@@ -35,4 +35,11 @@
             <input type="image" src="https://iconape.com/wp-content/files/xh/367685/svg/send-logo-icon-png-svg.png" height="100" onclick="send_verification();" />
         </fieldset>
     </form>
+
+    <script>
+        var bold = document.querySelectorAll("b");
+        for (var i = 0; i < bold.length; i++) {
+            bold[i].style.color = bold[i].parentElement.id;
+        }
+    </script>
 {% endblock %}
