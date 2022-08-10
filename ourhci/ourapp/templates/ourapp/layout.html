@@ -287,6 +287,33 @@
         }
       }
     </style>
+
+    {% if user.darkModeOn %}
+      <style>
+        body {
+          background: black;
+        }
+        h1, h2, h3, h4, h5, h6, p, span {
+          color: white;
+        }
+        hr {
+          background-color: white;
+          border: 0;
+        }
+        .l-navbar {
+          border: 2px white solid;
+          border-radius: 10px;
+        }
+        input {
+          border: 2px grey solid;
+          background-color: white;
+        }
+
+        .card > * > * {
+          color: black;
+        }
+      </style>
+    {% endif %}
   </head>
 
   <body id="body" >
