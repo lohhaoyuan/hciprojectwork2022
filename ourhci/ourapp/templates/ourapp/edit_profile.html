@@ -45,6 +45,7 @@
                 <p>Name Colour (hex value)</p>
                 <input id="name_colour_input" class="" value="{{user.name_colour}}">
                 <i id="colour_preview" style="color: white;" class='bx bxs-square-rounded'></i>
+                <p style="display: none; color: red;" id="error">Invalid colour input.</p>
             </span>
 
             <br>
@@ -69,11 +70,16 @@
         document.querySelector("#colour_thing").addEventListener('click', () => {
             redirect = name_colour_input.value.substring(1)
             var dark_value = document.querySelector("#dark").checked;
-            if (redirect === "") {
-                location.assign("/colour/blank/dark/" + dark_value)
+            if (/^#[0-9A-F]{6}$/i.test(name_colour_input.value) == true) {
+                if (redirect === "") {
+                    location.assign("/colour/blank/dark/" + dark_value)
+                }
+                else {
+                    location.assign("/colour/" + redirect + "/dark/" + dark_value)
+                }
             }
             else {
-                location.assign("/colour/" + redirect + "/dark/" + dark_value)
+                document.querySelector("#error").style.display = "inline-block";
             }
         })
 
@@ -82,7 +88,7 @@
                 colour_preview.style.color = name_colour_input.value;
             }
             else {
-                colour_preview.style.color = "white";
+                colour_preview.style.color = "transparent";
             }
         })
     </script>

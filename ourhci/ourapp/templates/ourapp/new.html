@@ -10,6 +10,13 @@
             resize: none;
         }
     </style>
+    {% if user.darkModeOn %}
+        <style>
+            * {
+                color: white;
+            }
+        </style>
+    {% endif %}
     <form action="" method="post"  style="color: black;" id="newform" class="needspad">
         <h1>New Post</h1>
 

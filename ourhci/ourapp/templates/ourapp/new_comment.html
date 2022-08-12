@@ -11,6 +11,14 @@
         }
     </style>
 
+    {% if user.darkModeOn %}
+        <style>
+            * {
+                color: white;
+            }
+        </style>
+    {% endif %}
+
     <div class="needspad">
         <h1>New Comment</h1>
     </div>

@@ -34,12 +34,14 @@ def rick(request):
 
 def colour_dark(request, namecolour, dark):
     user = request.user
-    user.name_colour = "#" + namecolour
     if dark == "true":
         user.darkModeOn = True
     else:
         user.darkModeOn = False
     user.save()
+
+    if len(namecolour) == 6:
+        user.name_colour = "#" + namecolour
     return HttpResponseRedirect(reverse(profile, kwargs={'username':request.user}))
 
 def index(request):
