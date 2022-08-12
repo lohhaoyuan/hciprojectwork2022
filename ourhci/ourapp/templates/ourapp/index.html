@@ -43,13 +43,15 @@
                       </div>
                 </form>
 
-            {% if user.is_authenticated %}
-                {% if unfiltered %}
-                    <button type="button" style="height: 50px; width: auto; font-size: 24px;" class="btn btn-secondary" onclick="location.assign('/following')"><i class="bi bi-funnel"></i></button>
-                {% else %}
-                    <button type="button" style="height: 50px; width: auto; font-size: 24px;" class="btn btn-secondary" onclick="location.assign('/')"><i class="bi bi-funnel-fill"></i></button>
-                {% endif %}
-            {%endif%}
+                <span title="Filter by followed users">
+                    {% if user.is_authenticated %}
+                        {% if unfiltered %}
+                            <button type="button" style="height: 50px; width: auto; font-size: 24px;" class="btn btn-secondary" onclick="location.assign('/following')"><i class="bi bi-funnel"></i></button>
+                        {% else %}
+                            <button type="button" style="height: 50px; width: auto; font-size: 24px;" class="btn btn-secondary" onclick="location.assign('/')"><i class="bi bi-funnel-fill"></i></button>
+                        {% endif %}
+                    {% endif %}
+                </span>
             </span>
             
         </div>
