@@ -11,6 +11,7 @@ class User(AbstractUser):
     reputation_multiplier = models.IntegerField(default = 1)
     darkModeOn = models.BooleanField(default=True)
     name_colour = models.CharField(max_length=7, default="#000000")
+    banned = models.BooleanField(default=False)
 
 class Post(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)

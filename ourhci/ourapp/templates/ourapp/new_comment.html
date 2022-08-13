@@ -13,41 +13,47 @@
 
     {% if user.darkModeOn %}
         <style>
-            * {
+            div {
                 color: white;
             }
         </style>
     {% endif %}
 
-    <div class="needspad">
-        <h1>New Comment</h1>
-    </div>
-
-    <div class="card" style="width: 90%; height: auto; margin-bottom:2px; margin: 0 auto; float: none; margin-bottom: 10px;">
-        <div class="card-body">
-            <h4 class="card-title">
-                <a id="{{post.user.name_colour}}" class="userlink" href="{% url 'profile' post.user %}">
-                    <b>{{post.user}}</b>
-                </a>
-            </h4>
-            <p class="card-text">{{post.content | safe}}</p>
+    {% if not user.banned %}
+        <div class="needspad">
+            <h1>New Comment</h1>
         </div>
-    </div>
 
-    <form action="" method="post"  style="color: black;" id="newform" class="needspad">
-        {% csrf_token %}
-        <fieldset>
-            {% for element in form %}
-                <div style="text-transform:capitalize;">{{element.name}}:</div> {{element}}
-            {% endfor %}
-            <input type="image" src="https://iconape.com/wp-content/files/xh/367685/svg/send-logo-icon-png-svg.png" height="100" onclick="send_verification();" />
-        </fieldset>
-    </form>
+        <div class="card" style="width: 90%; height: auto; margin-bottom:2px; margin: 0 auto; float: none; margin-bottom: 10px;">
+            <div class="card-body">
+                <h4 class="card-title">
+                    <a id="{{post.user.name_colour}}" class="userlink" href="{% url 'profile' post.user %}">
+                        <b>{{post.user}}</b>
+                    </a>
+                </h4>
+                <p class="card-text">{{post.content | safe}}</p>
+            </div>
+        </div>
 
-    <script>
-        var bold = document.querySelectorAll("b");
-        for (var i = 0; i < bold.length; i++) {
-            bold[i].style.color = bold[i].parentElement.id;
-        }
-    </script>
+        <form action="" method="post"  style="color: black;" id="newform" class="needspad">
+            {% csrf_token %}
+            <fieldset>
+                {% for element in form %}
+                    <div style="text-transform:capitalize;">{{element.name}}:</div> {{element}}
+                {% endfor %}
+                <input type="image" src="https://iconape.com/wp-content/files/xh/367685/svg/send-logo-icon-png-svg.png" height="100" onclick="send_verification();" />
+            </fieldset>
+        </form>
+
+        <script>
+            var bold = document.querySelectorAll("b");
+            for (var i = 0; i < bold.length; i++) {
+                bold[i].style.color = bold[i].parentElement.id;
+            }
+        </script>
+    {% else %}
+        <div class="needspad">
+            <p style="color: red;">You are under a ban and cannot comment. Please appeal to an admin if you think this is erroneous.</p>
+        </div>
+    {% endif %}
 {% endblock %}

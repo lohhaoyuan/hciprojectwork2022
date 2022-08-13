@@ -63,7 +63,14 @@ def make_post(request):
         content = markdown2.markdown(request.POST['content'])
         for bannedword in bannedwords:
             if bannedword.upper() in content.upper():
-                
+                user = request.user
+                user.reputation = 100 - round((1.5**user.reputation_multiplier) - 1)
+                user.reputation_multiplier += 1
+                if user.reputation < 0:
+                    user.banned = True
+                user.save()
+
+
                 return render(request, "ourapp/youshallnotpass.html", {
                     "url": "new"
                 })
@@ -96,9 +103,7 @@ def like(request, post_id):
             liker = request.user,
             liked_post = Post.objects.get(id=post_id)
         )
-        print("liked post")
         creation.save()
-        print(f"saved post with user {request.user} and post {Post.objects.get(id=post_id).content}")
         post = Post.objects.get(id=post_id)
         post.likes += 1
         post.save()
@@ -305,6 +310,12 @@ def edit(request, post_id):
         post.content = markdown2.markdown(request.POST['content'])
         for bannedword in bannedwords:
             if bannedword.upper() in post.content.upper():
+                user = request.user
+                user.reputation = 100 - round((1.5**user.reputation_multiplier) - 1)
+                user.reputation_multiplier += 1
+                if user.reputation < 0:
+                    user.banned = True
+                user.save()
                 return render(request, "ourapp/youshallnotpass.html", {
                     "url": "edit/" + str(post_id)
                 })
@@ -319,7 +330,12 @@ def delete(request, post_id):
 
 def delete_comment(request,comment_id):
     comment = Comment.objects.get(id=comment_id)
+    post = comment.commented_post
+
     comment.delete()
+
+    post.comments -= 1
+    post.save()
     return HttpResponseRedirect('/')
 
 def documentation(request):
@@ -368,8 +384,14 @@ def comment(request, post_id):
         content = markdown2.markdown(request.POST['content'])
         for bannedword in bannedwords:
             if bannedword.upper() in content.upper():
+                user = request.user
+                user.reputation = 100 - round((1.5**user.reputation_multiplier) - 1)
+                user.reputation_multiplier += 1
+                if user.reputation < 0:
+                    user.banned = True
+                user.save()
                 return render(request, "ourapp/youshallnotpass.html", {
-                    "url": "comment/" + post_id
+                    "url": "comment/" + str(post_id)
                 })
 
         post.comments += 1
