@@ -1,5 +1,5 @@
 # OurHCI
-### Lightning Fast. Extremely Secure. A culmination of six months of 100% hard work with absolutely no slacking.
+### Lightning Fast. Extremely Secure. A culmination of eight months of 100% hard work with absolutely no slacking.
 
 Most people use social media an average of every moment of their lives per hour. Majority of their social media use is toxic, which is bad.
 
