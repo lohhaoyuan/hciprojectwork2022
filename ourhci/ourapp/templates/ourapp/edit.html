@@ -15,8 +15,13 @@
             resize: none;
         }
     </style>
-
+    {% if user.banned %}
     <div style="margin-left: 40px;">
+        <div class="needspad">
+            <p style="color: red;">You are under a ban and cannot post. Please appeal to an admin if you think this is erroneous.</p>
+        </div>
+    {% else %}
+      
         {% if post.user != user %}
             <p style="color: red; font-weight: bold; font-size: 20px;">You cannot edit another user's post.</p>
         {% else %}
@@ -37,6 +42,7 @@
                 </form>
             </div>
         {% endif %}
+    {% endif %}
     </div>
 
     <script>
