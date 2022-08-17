@@ -14,11 +14,16 @@
             float: none;
             margin-bottom: 10px;
         }
-
-        * {
-            color: white;
-        }
     </style>
+
+    {% if user.darkModeOn %}
+        <style>
+            * {
+                color: white;
+            }
+        </style>
+    {% endif %}
+
     <div class="needspad">
         <hr style="background-color: black; border: none; height: 5px;">
 
