@@ -25,11 +25,11 @@
         {% if post.user != user %}
             <p style="color: red; font-weight: bold; font-size: 20px;">You cannot edit another user's post.</p>
         {% else %}
-            <h2>Editing Post</h2>
+            <h2 class="needspad">Editing Post</h2>
 
             <br>
 
-            <div class="content_div" id="{{user.name_colour}}">
+            <div class="needspad content_div" id="{{user.name_colour}}">
                 <a class="navbar-brand" href="/profile/{{user}}" style="font-size: 1.5em; font-weight: bold;">You</a>
                 <form id="edit-form" action="" method="post">
                     <fieldset>
