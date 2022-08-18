@@ -57,7 +57,7 @@
         </div>
         
         {% for post in feed %}
-            <div class="card" style="width: 90%; height: auto; margin-bottom:2px; margin: 0 auto; float: none; margin-bottom: 10px;" onclick="location.assign('/post/{{post.id}}')">
+            <div class="card" style="width: 90%; height: auto; margin-bottom:2px; margin: 0 auto; float: none; margin-bottom: 10px;">
                 <div class="card-body">
                     <h4 class="card-title">
                         <a id="{{post.user.name_colour}}" class="userlink" href="{% url 'profile' post.user %}">
@@ -74,16 +74,14 @@
                             </span>
                         {% endif %}
                     </h4>
-                    {% if post.image %}
-                        <img src="/ourapp/{{post.image}}" alt="/ourapp/{{post.image}}">
-                    {% endif %}
-                    <p class="card-text">{{post.content | safe}}</p>
-                    <!--
-                        <a href="#" class="card-link">Card link</a>
-                        <a href="#" class="card-link">Another link</a>
-                    -->
-                    <a href="{% url 'like' post.id %}" class="btn btn-outline-success"><i class='bx bx-heart'></i> {{post.likes}}</a>
-                    <a href="{% url 'comment' post.id %}" class="btn btn-outline-success"><i class='bi bi-chat-left-text'></i> {{post.comments}}</a>
+                    <div onclick="location.assign('/post/{{post.id}}')">
+                        {% if post.image %}
+                            <img src="/ourapp/{{post.image}}" alt="/ourapp/{{post.image}}">
+                        {% endif %}
+                        <p class="card-text">{{post.content | safe}}</p>
+                        <a href="{% url 'like' post.id %}" class="btn btn-outline-success"><i class='bx bx-heart'></i> {{post.likes}}</a>
+                        <a href="{% url 'comment' post.id %}" class="btn btn-outline-success"><i class='bi bi-chat-left-text'></i> {{post.comments}}</a>
+                    </div>
                 </div>
             </div> 
             
