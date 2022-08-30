@@ -15,6 +15,6 @@ Run ```pip install Django```.
 
 ```cd``` into the directory of the project containing the "manage.py" file, and run ```python manage.py runserver```.
 
-Now, open (127.0.0.1:8000)[127.0.0.1:8000) in your search browser, and embrace the Hwa Chong spirit of...**communism**.
+Now, open [127.0.0.1:8000](127.0.0.1:8000) in your search browser, and embrace the Hwa Chong spirit of...**communism**.
 
 **We** hope that you enjoy **Our**Project made for **Our**PW in **Our**School.
